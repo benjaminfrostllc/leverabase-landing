@@ -1,227 +1,151 @@
 'use client'
 
-import { Check, ArrowRight, Building2, CreditCard, TrendingUp, Shield, Users, Zap, ChevronRight, Star, DollarSign, LineChart, BadgeCheck, Phone, FileText, Target, Rocket } from 'lucide-react'
+import { useState } from 'react'
+import { Check, ArrowRight, Building2, CreditCard, Shield, Zap, ChevronDown, Star, Sparkles, FileText, Eye, BadgeCheck, DollarSign, Clock, HeartHandshake, Smartphone, Mail } from 'lucide-react'
 
-// Service card data with expanded details
-const services = [
-  {
-    icon: TrendingUp,
-    title: 'Business Credit Building',
-    description: 'Establish and build your business credit profile from scratch with our proven system.',
-    features: ['Net 30/60/90 vendor accounts', 'Business credit monitoring', 'D&B, Experian, Equifax reporting'],
-    expandedDetails: [
-      'We set up your business with 5-15 reporting vendor accounts',
-      'Monitor your Paydex, Intelliscore & SBFE scores',
-      'Strategic payment timing to maximize score growth',
-      'Dispute inaccurate information on your behalf'
-    ]
-  },
-  {
-    icon: CreditCard,
-    title: 'Business Credit Cards',
-    description: 'Access high-limit business credit cards with 0% APR introductory offers.',
-    features: ['$10K-$100K+ credit limits', '0% APR for 12-21 months', 'Cashback & travel rewards'],
-    expandedDetails: [
-      'Curated list of best cards for your profile',
-      'Application timing strategy for approvals',
-      'Credit limit increase techniques',
-      'Balance transfer optimization'
-    ]
-  },
-  {
-    icon: LineChart,
-    title: 'Lines of Credit',
-    description: 'Flexible revolving credit lines for ongoing business needs and cash flow.',
-    features: ['$25K-$250K credit lines', 'Draw funds as needed', 'Only pay on what you use'],
-    expandedDetails: [
-      'Bank and fintech LOC options',
-      'Unsecured and secured options',
-      'Same-day funding available',
-      'Renewable credit facilities'
-    ]
-  },
-  {
-    icon: DollarSign,
-    title: 'Business Loans',
-    description: 'Term loans for larger investments, equipment, real estate, or expansion.',
-    features: ['$50K-$5M+ loan amounts', 'Competitive rates from 6%', 'Flexible 1-10 year terms'],
-    expandedDetails: [
-      'Term loans, equipment financing, commercial RE',
-      'Revenue-based financing options',
-      'Invoice factoring & AR financing',
-      'Merchant cash advances when needed'
-    ]
-  },
-  {
-    icon: Users,
-    title: 'Personal Credit Services',
-    description: 'Improve your personal credit to unlock better business funding options.',
-    features: ['Credit repair & optimization', 'Personal funding options', 'Score improvement strategies'],
-    expandedDetails: [
-      'Dispute negative items & errors',
-      'Authorized user tradelines',
-      'Personal credit card stacking',
-      'Debt payoff strategies'
-    ]
-  },
-  {
-    icon: Building2,
-    title: 'SBA Loans',
-    description: 'Government-backed loans with favorable terms for qualified businesses.',
-    features: ['Up to $5M in funding', 'Lower down payments', 'Extended repayment terms'],
-    expandedDetails: [
-      'SBA 7(a) general purpose loans',
-      'SBA 504 real estate & equipment',
-      'SBA Microloans for startups',
-      'Full application preparation'
-    ]
-  }
-]
-
-// How it works steps with expanded details
+// How it works steps
 const steps = [
   {
-    number: 1,
-    title: 'Free Consultation',
-    description: 'We analyze your current credit situation and create a custom funding roadmap.',
-    icon: Phone,
-    expandedTitle: 'What Happens in Your Consultation',
-    expandedDetails: [
-      'Review your personal & business credit reports',
-      'Identify quick wins and areas to improve',
-      'Create a custom 90-day funding roadmap',
-      'Set realistic funding goals and timeline',
-      'Answer all your questions about the process'
-    ]
+    number: '01',
+    title: 'Discovery & Analysis',
+    description: 'Our AI scans all three major bureaus plus secondary bureaus, identifying every disputable item and building a comprehensive case file tailored to your situation.'
   },
   {
-    number: 2,
-    title: 'Build Foundation',
-    description: 'Establish your business credit profile with the right vendor accounts and tradelines.',
-    icon: FileText,
-    expandedTitle: 'Foundation Building Process',
-    expandedDetails: [
-      'Register with D&B, Experian, Equifax business',
-      'Open 5-10 starter vendor accounts',
-      'Establish payment history that reports',
-      'Build your Paydex & business scores',
-      'Create business credibility documents'
-    ]
+    number: '02',
+    title: 'Strategic Action',
+    description: 'We craft bespoke FCRA-grounded dispute letters for your specific situation — not templates. Letters are mailed daily to bureaus and creditors until issues are resolved.'
   },
   {
-    number: 3,
-    title: 'Scale Credit',
-    description: 'Apply for business credit cards and credit lines as your profile strengthens.',
-    icon: Target,
-    expandedTitle: 'Credit Scaling Strategy',
-    expandedDetails: [
-      'Apply for store credit cards first',
-      'Graduate to cash credit cards',
-      'Request credit limit increases',
-      'Add revolving lines of credit',
-      'Stack multiple approvals strategically'
-    ]
+    number: '03',
+    title: 'Monitoring & Response',
+    description: 'Watch every dispute through your portal. We handle all responses, escalations, and follow-ups automatically. You\'ll never be left guessing about status.'
   },
   {
-    number: 4,
-    title: 'Access Funding',
-    description: 'Qualify for larger loans and credit lines to fuel your business growth.',
-    icon: Rocket,
-    expandedTitle: 'Funding Access & Beyond',
-    expandedDetails: [
-      'Apply for term loans & large LOCs',
-      'Access SBA loan programs',
-      'Leverage your credit for growth',
-      'Ongoing credit optimization',
-      'Lifetime access to funding strategies'
-    ]
+    number: '04',
+    title: 'Results & Payment',
+    description: 'See negative items disappear from your reports in real-time through your portal. Pay as you see results — we\'re aligned with your success.'
   }
 ]
 
-function ServiceCard({ service }: { service: typeof services[0] }) {
-  const Icon = service.icon
+// Pricing plans
+const plans = [
+  {
+    name: 'Starter',
+    description: 'Clean up one bureau',
+    price: '$500',
+    period: 'One-time payment',
+    features: [
+      'Single bureau cleaning',
+      'Real-time portal access',
+      'Email & chat support'
+    ],
+    popular: false
+  },
+  {
+    name: 'Complete',
+    description: 'Full credit restoration',
+    price: '$2,500',
+    period: 'Or $417/mo for 6 months',
+    features: [
+      'All 3 major bureaus',
+      'Secondary bureaus included',
+      'LexisNexis cleaning',
+      'Unlimited support'
+    ],
+    popular: true
+  },
+  {
+    name: 'Business Builder',
+    description: 'Credit + funding package',
+    price: '$4,499',
+    period: 'Or $750/mo for 6 months',
+    features: [
+      'Everything in Complete',
+      'Tradelines + credit history',
+      'LLC & EIN setup help',
+      '$30K+ funding guarantee'
+    ],
+    popular: false
+  }
+]
 
+// Testimonials
+const testimonials = [
+  {
+    quote: "I had 7 collections and 2 charge-offs dragging my score down to 512. After 4 months with Leverabase, I'm sitting at 691. Just got approved for my first real credit card in years. These people actually know what they're doing.",
+    name: 'Marcus T.',
+    location: 'Atlanta, GA',
+    result: '512 → 691'
+  },
+  {
+    quote: "Was skeptical at first because I've been burned by credit repair companies before. But the portal where I could see everything happening in real-time made all the difference. They removed 11 items from my reports. Worth every penny.",
+    name: 'Jennifer R.',
+    location: 'Houston, TX',
+    result: '11 items removed'
+  },
+  {
+    quote: "We needed to clean up our credit before applying for a mortgage. Leverabase got us from the high 500s to 720+ in about 5 months. Our lender couldn't believe the turnaround. Closed on our house last month.",
+    name: 'David & Lisa M.',
+    location: 'Phoenix, AZ',
+    result: '580s → 720+'
+  },
+  {
+    quote: "Went with the Business Builder package. Not only did they fix my personal credit, but they helped me set up my LLC properly and got me $42K in business credit lines. My trucking business is finally funded.",
+    name: 'Anthony W.',
+    location: 'Chicago, IL',
+    result: '$42K in funding'
+  },
+  {
+    quote: "I had a bankruptcy from 2019 that I thought would haunt me forever. They couldn't remove that obviously, but they cleaned up everything else around it. Went from 489 to 648. I can actually breathe now.",
+    name: 'Keisha B.',
+    location: 'Miami, FL',
+    result: '489 → 648'
+  },
+  {
+    quote: "The payment plan made this affordable for me. And unlike other companies that just send generic letters, I could tell they actually researched my specific situation. Got 9 negatives removed including a repo.",
+    name: 'Robert S.',
+    location: 'Dallas, TX',
+    result: '9 items removed'
+  }
+]
+
+// Guarantees
+const guarantees = [
+  { icon: DollarSign, title: 'Pro-Rated Refund', description: 'Zero items removed after 90 days? Get a pro-rated refund.' },
+  { icon: HeartHandshake, title: 'Unlimited Support', description: 'Email, text, and Zoom support throughout your journey.' },
+  { icon: Clock, title: 'Quarterly Check-ins', description: '12-month protection with quarterly re-evaluations.' },
+  { icon: Eye, title: 'Real-Time Updates', description: 'Watch progress after each dispute round in your portal.' },
+  { icon: FileText, title: 'FCRA-Grounded', description: 'Bespoke dispute letters using proven legal frameworks.' },
+  { icon: CreditCard, title: '0% Financing', description: '6-month payment plans, no credit check required.' }
+]
+
+function StepAccordion({ step, isOpen, onClick }: { step: typeof steps[0], isOpen: boolean, onClick: () => void }) {
   return (
-    <div className="group relative bg-[#141B2D] border border-white/5 rounded-2xl p-8 cursor-pointer overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] min-h-[320px]">
-      {/* Default content */}
-      <div className="transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-4">
-        <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA]/20 to-[#0066FF]/20 rounded-xl flex items-center justify-center mb-6">
-          <Icon className="w-6 h-6 text-[#00D4AA]" />
+    <div
+      className={`border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#141B2D]' : 'bg-[#0A0F1C] hover:bg-[#0F1420]'}`}
+    >
+      <button
+        onClick={onClick}
+        className="w-full p-6 flex items-center justify-between text-left"
+      >
+        <div className="flex items-center gap-4">
+          <span className="text-2xl font-bold text-[#00D4AA]">{step.number}</span>
+          <span className="text-lg font-semibold text-white">{step.title}</span>
         </div>
-        <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
-        <p className="text-gray-400 mb-6">{service.description}</p>
-        <ul className="space-y-3">
-          {service.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-              <span className="text-white">{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Hover content */}
-      <div className="absolute inset-0 p-8 bg-gradient-to-br from-[#141B2D] to-[#0A0F1C] transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
-        <div className="w-10 h-10 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-xl flex items-center justify-center mb-4">
-          <Icon className="w-5 h-5 text-white" />
-        </div>
-        <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-        <p className="text-[#00D4AA] text-sm font-medium mb-4">What&apos;s Included:</p>
-        <ul className="space-y-2">
-          {service.expandedDetails.map((detail, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <ChevronRight className="w-4 h-4 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-              <span className="text-white text-sm">{detail}</span>
-            </li>
-          ))}
-        </ul>
-        <a href="https://leverabase.app" className="mt-4 inline-flex items-center gap-2 text-[#00D4AA] hover:text-white transition text-sm font-medium">
-          Learn More <ArrowRight className="w-4 h-4" />
-        </a>
-      </div>
-    </div>
-  )
-}
-
-function StepCard({ step, isLast }: { step: typeof steps[0], isLast: boolean }) {
-  const Icon = step.icon
-
-  return (
-    <div className="relative">
-      {!isLast && (
-        <div className="absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-[#00D4AA] to-[#0066FF] hidden lg:block" />
-      )}
-      <div className="group relative bg-[#0A0F1C] border border-white/5 rounded-2xl p-6 text-center cursor-pointer overflow-hidden min-h-[280px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-        {/* Default content */}
-        <div className="transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-            {step.number}
-          </div>
-          <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-          <p className="text-gray-400 text-sm">{step.description}</p>
-        </div>
-
-        {/* Hover content */}
-        <div className="absolute inset-0 p-6 bg-gradient-to-br from-[#0A0F1C] to-[#141B2D] flex flex-col transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
-          <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center mx-auto mb-3">
-            <Icon className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="text-base font-bold text-white mb-3">{step.expandedTitle}</h3>
-          <ul className="space-y-2 text-left flex-1">
-            {step.expandedDetails.map((detail, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <Check className="w-4 h-4 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                <span className="text-white text-xs">{detail}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ChevronDown className={`w-5 h-5 text-[#00D4AA] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <p className="px-6 pb-6 text-gray-400 leading-relaxed">
+          {step.description}
+        </p>
       </div>
     </div>
   )
 }
 
 export default function Home() {
+  const [openStep, setOpenStep] = useState<number>(0)
+
   return (
     <main className="min-h-screen bg-[#0A0F1C]">
       {/* Navigation */}
@@ -230,28 +154,25 @@ export default function Home() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-lg flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-white" />
+                <Sparkles className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Leverabase</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#services" className="text-gray-400 hover:text-white transition">Services</a>
               <a href="#how-it-works" className="text-gray-400 hover:text-white transition">How It Works</a>
               <a href="#pricing" className="text-gray-400 hover:text-white transition">Pricing</a>
               <a href="#testimonials" className="text-gray-400 hover:text-white transition">Results</a>
+              <a href="#guarantees" className="text-gray-400 hover:text-white transition">Guarantees</a>
             </div>
-            <div className="flex items-center gap-4">
-              <a href="https://leverabase.app" className="text-gray-400 hover:text-white transition hidden sm:block">Log In</a>
-              <a href="https://leverabase.app" className="bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-5 py-2.5 rounded-lg font-medium hover:opacity-90 transition">
-                Get Started
-              </a>
-            </div>
+            <a href="https://leverabase.app" className="bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-5 py-2.5 rounded-lg font-medium hover:opacity-90 transition">
+              Get Started
+            </a>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-grid">
+      <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Background glow effects */}
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0066FF]/20 rounded-full blur-3xl" />
         <div className="absolute top-40 right-1/4 w-96 h-96 bg-[#00D4AA]/20 rounded-full blur-3xl" />
@@ -259,387 +180,257 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6">
-              <Zap className="w-4 h-4 text-[#00D4AA]" />
-              <span className="text-sm text-gray-300">Trusted by 2,500+ businesses</span>
+              <Shield className="w-4 h-4 text-[#00D4AA]" />
+              <span className="text-sm text-gray-300">Credit Restoration & Financial Freedom</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              Build Business Credit.
+              Clean Credit.
               <br />
-              <span className="gradient-text">Unlock Funding.</span>
+              <span className="bg-gradient-to-r from-[#00D4AA] to-[#0066FF] bg-clip-text text-transparent">Unlock Your Future.</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-              Access $50K to $500K+ in business credit and funding. We guide you through building a strong credit profile and securing the capital your business needs to grow.
+              Whether you&apos;re an individual ready to take control of your financial future or an entrepreneur building business credit — we&apos;ve got you covered.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
-                Start Building Credit
+              <a href="#pricing" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
+                View Packages
                 <ArrowRight className="w-5 h-5" />
               </a>
               <a href="#how-it-works" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition">
-                See How It Works
+                How It Works
               </a>
             </div>
-
-            {/* Trust indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-8 text-gray-500">
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-[#00D4AA]" />
-                <span className="text-sm">Bank-Level Security</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <BadgeCheck className="w-5 h-5 text-[#00D4AA]" />
-                <span className="text-sm">No Hard Credit Pulls</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-[#00D4AA]" />
-                <span className="text-sm">4.9/5 Rating</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold gradient-text mb-2">$127M+</div>
-              <div className="text-gray-500">Funding Secured</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold gradient-text mb-2">2,500+</div>
-              <div className="text-gray-500">Businesses Funded</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold gradient-text mb-2">45 Days</div>
-              <div className="text-gray-500">Avg. Time to Funding</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold gradient-text mb-2">98%</div>
-              <div className="text-gray-500">Client Satisfaction</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Complete Funding Solutions
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Whether you&apos;re starting fresh or scaling up, we have the right funding solution for your business. <span className="text-[#00D4AA]">Hover over each card to see what&apos;s included.</span>
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, i) => (
-              <ServiceCard key={i} service={service} />
-            ))}
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 bg-[#141B2D]/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              How Leverabase Works
+      <section id="how-it-works" className="py-24">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-[#00D4AA] font-medium mb-2">YOUR JOURNEY</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              The Path to Clean Credit
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Our proven 4-step process helps you build credit and secure funding faster than going it alone. <span className="text-[#00D4AA]">Hover to see what happens at each step.</span>
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="space-y-4">
             {steps.map((step, i) => (
-              <StepCard key={i} step={step} isLast={i === steps.length - 1} />
+              <StepAccordion
+                key={i}
+                step={step}
+                isOpen={openStep === i}
+                onClick={() => setOpenStep(openStep === i ? -1 : i)}
+              />
             ))}
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24">
+      <section id="pricing" className="py-24 bg-[#141B2D]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
+            <p className="text-[#00D4AA] font-medium mb-2">SIMPLE PRICING</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Simple, Transparent Pricing
+              Choose Your Path
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Choose the plan that fits your business goals. All plans include our proven credit-building system.
+            <p className="text-gray-400">
+              Not sure which is right? Book a free consultation and we&apos;ll recommend the best option.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Starter Plan */}
-            <div className="bg-[#141B2D] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-              <h3 className="text-xl font-bold text-white mb-2">Starter</h3>
-              <p className="text-gray-400 mb-4">For new businesses building credit</p>
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-white">$497</span>
-                <span className="text-gray-400">/one-time</span>
+            {plans.map((plan, i) => (
+              <div
+                key={i}
+                className={`rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${
+                  plan.popular
+                    ? 'bg-gradient-to-b from-[#141B2D] to-[#0A0F1C] border border-[#00D4AA]/30 shadow-[0_0_60px_rgba(0,212,170,0.15)]'
+                    : 'bg-[#141B2D] border border-white/5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]'
+                }`}
+              >
+                {plan.popular && (
+                  <div className="text-[#00D4AA] text-sm font-semibold mb-4">POPULAR</div>
+                )}
+                <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
+                <p className="text-gray-400 text-sm mb-4">{plan.description}</p>
+                <div className="mb-2">
+                  <span className="text-4xl font-bold text-white">{plan.price}</span>
+                </div>
+                <p className="text-gray-500 text-sm mb-6">{plan.period}</p>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, j) => (
+                    <li key={j} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
+                      <span className="text-white">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="https://leverabase.app"
+                  className={`block w-full text-center py-3 rounded-xl font-semibold transition ${
+                    plan.popular
+                      ? 'bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white hover:opacity-90'
+                      : 'bg-white/10 text-white hover:bg-white/20'
+                  }`}
+                >
+                  Get Started
+                </a>
               </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Business credit profile setup</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">5 starter vendor accounts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Credit monitoring setup</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Email support</span>
-                </li>
-              </ul>
-              <a href="https://leverabase.app" className="block w-full bg-white/10 text-white text-center py-3 rounded-xl font-semibold hover:bg-white/20 transition">
-                Get Started
-              </a>
-            </div>
-
-            {/* Growth Plan */}
-            <div className="bg-gradient-to-b from-[#141B2D] to-[#0A0F1C] border border-[#00D4AA]/30 rounded-2xl p-8 relative shadow-[0_0_60px_rgba(0,212,170,0.2)] transition-all duration-300 hover:-translate-y-1">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white text-sm font-semibold px-4 py-1 rounded-full">
-                Most Popular
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">Growth</h3>
-              <p className="text-gray-400 mb-4">For businesses ready to scale</p>
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-white">$1,497</span>
-                <span className="text-gray-400">/one-time</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Everything in Starter</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">15 vendor accounts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Business credit card applications</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Personal credit optimization</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">1-on-1 strategy calls</span>
-                </li>
-              </ul>
-              <a href="https://leverabase.app" className="block w-full bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition">
-                Get Started
-              </a>
-            </div>
-
-            {/* Enterprise Plan */}
-            <div className="bg-[#141B2D] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-              <h3 className="text-xl font-bold text-white mb-2">Enterprise</h3>
-              <p className="text-gray-400 mb-4">Full-service funding solutions</p>
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-white">$3,997</span>
-                <span className="text-gray-400">/one-time</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Everything in Growth</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Unlimited vendor accounts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Business loan applications</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">SBA loan guidance</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Dedicated account manager</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
-                  <span className="text-white">12 months support</span>
-                </li>
-              </ul>
-              <a href="https://leverabase.app" className="block w-full bg-white/10 text-white text-center py-3 rounded-xl font-semibold hover:bg-white/20 transition">
-                Get Started
-              </a>
-            </div>
+            ))}
           </div>
+
+          <p className="text-center text-gray-500 mt-8">
+            Payment plans at 0% interest. BNPL: Affirm, Klarna, Afterpay & more.
+          </p>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-[#141B2D]/50">
+      <section id="testimonials" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Real Results from Real Businesses
+          <div className="text-center mb-12">
+            <p className="text-[#00D4AA] font-medium mb-2">REAL RESULTS</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              What Our Clients Say
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Join thousands of business owners who have built credit and secured funding with Leverabase.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#00D4AA] text-[#00D4AA]" />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-6">
-                &quot;Started with zero business credit. Within 6 months, I had $75K in credit lines and just got approved for a $150K business loan. Leverabase made it possible.&quot;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center text-white font-bold">
-                  MJ
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, i) => (
+              <div
+                key={i}
+                className="bg-[#141B2D] border border-white/5 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+              >
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-[#00D4AA] text-[#00D4AA]" />
+                  ))}
                 </div>
-                <div>
-                  <div className="font-semibold text-white">Marcus Johnson</div>
-                  <div className="text-sm text-gray-400">E-commerce Business Owner</div>
+                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                  &quot;{testimonial.quote}&quot;
+                </p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="font-semibold text-white">{testimonial.name}</div>
+                    <div className="text-sm text-gray-500">{testimonial.location}</div>
+                  </div>
+                  <div className="bg-[#00D4AA]/10 text-[#00D4AA] text-sm font-semibold px-3 py-1 rounded-full">
+                    {testimonial.result}
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#00D4AA] text-[#00D4AA]" />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-6">
-                &quot;The team at Leverabase helped me fix my personal credit and build my business credit simultaneously. Now I have over $200K in available funding.&quot;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center text-white font-bold">
-                  SR
-                </div>
-                <div>
-                  <div className="font-semibold text-white">Sarah Rodriguez</div>
-                  <div className="text-sm text-gray-400">Real Estate Investor</div>
-                </div>
-              </div>
-            </div>
+      {/* Guarantees Section */}
+      <section id="guarantees" className="py-24 bg-[#141B2D]/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-[#00D4AA] font-medium mb-2">OUR COMMITMENT</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Guarantees & Features
+            </h2>
+          </div>
 
-            <div className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#00D4AA] text-[#00D4AA]" />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-6">
-                &quot;I was skeptical at first, but the results speak for themselves. Got approved for 5 business credit cards totaling $85K in the first 90 days.&quot;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center text-white font-bold">
-                  DW
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {guarantees.map((item, i) => {
+              const Icon = item.icon
+              return (
+                <div
+                  key={i}
+                  className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA]/20 to-[#0066FF]/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-6 h-6 text-[#00D4AA]" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-gray-400 text-sm">{item.description}</p>
                 </div>
-                <div>
-                  <div className="font-semibold text-white">David Williams</div>
-                  <div className="text-sm text-gray-400">Marketing Agency Owner</div>
-                </div>
-              </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* App Coming Soon Section */}
+      <section className="py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-[#141B2D] to-[#0A0F1C] border border-white/10 rounded-3xl p-8 md:p-12 text-center">
+            <div className="inline-flex items-center gap-2 bg-[#00D4AA]/10 text-[#00D4AA] rounded-full px-4 py-2 mb-6 text-sm font-medium">
+              <Smartphone className="w-4 h-4" />
+              Coming Soon
             </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              The Leverabase App
+            </h2>
+            <p className="text-gray-400 mb-6 max-w-xl mx-auto">
+              Track disputes, watch deletions in real-time, chat with your specialist, and manage your credit journey from one app.
+            </p>
+            <a href="https://leverabase.app" className="inline-flex items-center gap-2 text-[#00D4AA] hover:text-white transition font-medium">
+              Explore <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24">
+      <section className="py-24 bg-[#141B2D]/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Ready to Build Your Business Credit?
+            Ready for Financial Freedom?
           </h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Join 2,500+ business owners who have used Leverabase to build credit and access the funding they need. Start your journey today.
+          <p className="text-gray-400 mb-8">
+            Personal credit, business credit, or both — start with a free consultation.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
-              Start Free Consultation
+              Book Free Consultation
               <ArrowRight className="w-5 h-5" />
             </a>
-            <a href="tel:+1234567890" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition">
-              Call Us Now
-            </a>
           </div>
+          <p className="text-gray-500 mt-4 text-sm">
+            Or email <a href="mailto:contact@leverabase.com" className="text-[#00D4AA] hover:underline">contact@leverabase.com</a>
+          </p>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-lg flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold text-white">Leverabase</span>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-lg flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-white" />
               </div>
-              <p className="text-gray-400 text-sm">
-                Empowering businesses to build credit and access funding since 2020.
-              </p>
+              <span className="text-xl font-bold text-white">Leverabase</span>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-white mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#services" className="hover:text-white transition">Business Credit Building</a></li>
-                <li><a href="#services" className="hover:text-white transition">Business Credit Cards</a></li>
-                <li><a href="#services" className="hover:text-white transition">Lines of Credit</a></li>
-                <li><a href="#services" className="hover:text-white transition">Business Loans</a></li>
-              </ul>
-            </div>
+            <p className="text-gray-500 text-sm">
+              Credit Restoration & Financial Freedom
+            </p>
 
-            <div>
-              <h4 className="font-semibold text-white mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition">Careers</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4">Legal</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition">Disclaimer</a></li>
-              </ul>
+            <div className="flex items-center gap-6 text-gray-400 text-sm">
+              <a href="#how-it-works" className="hover:text-white transition">Process</a>
+              <a href="#pricing" className="hover:text-white transition">Pricing</a>
+              <a href="#guarantees" className="hover:text-white transition">Guarantees</a>
+              <a href="mailto:contact@leverabase.com" className="hover:text-white transition flex items-center gap-1">
+                <Mail className="w-4 h-4" />
+                contact@leverabase.com
+              </a>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="mt-8 pt-8 border-t border-white/5 text-center">
             <p className="text-gray-500 text-sm">
-              © 2025 Leverabase. All rights reserved.
+              © 2026 Leverabase. All rights reserved.
             </p>
-            <div className="flex items-center gap-4 text-gray-400">
-              <span className="text-sm">Not a lender. We connect businesses with funding partners.</span>
-            </div>
           </div>
         </div>
       </footer>
