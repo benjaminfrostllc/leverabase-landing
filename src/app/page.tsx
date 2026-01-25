@@ -42,6 +42,19 @@ const plans = [
     popular: false
   },
   {
+    name: 'ChexSystems & Early Warning',
+    description: 'Banking report cleaning',
+    price: '$500',
+    period: 'One-time payment',
+    features: [
+      'ChexSystems cleaning',
+      'Early Warning cleaning',
+      'Real-time portal access',
+      'Email & chat support'
+    ],
+    popular: false
+  },
+  {
     name: 'Complete',
     description: 'Full credit restoration',
     price: '$2,500',
@@ -57,10 +70,11 @@ const plans = [
   {
     name: 'Business Builder',
     description: 'Credit + funding package',
-    price: '$4,499',
-    period: 'Or $750/mo for 6 months',
+    price: '$5,500',
+    period: 'Or $917/mo for 6 months',
     features: [
       'Everything in Complete',
+      'ChexSystems & Early Warning cleaning',
       'Tradelines + credit history',
       'LLC & EIN setup help',
       '$30K+ funding guarantee'
@@ -72,24 +86,24 @@ const plans = [
 // Testimonials
 const testimonials = [
   {
-    quote: "After my divorce, I was left with 7 collections and 2 charge-offs that tanked my score to 512. I thought I'd be stuck renting forever. Four months with Leverabase and I'm at 691 — just got approved for a $15K credit card and I'm pre-approved for a mortgage. For the first time in years, I see a future.",
+    quote: "After my divorce, I was left with 7 collections and 2 charge offs that tanked my score to 512. I thought I'd be stuck renting forever. Four months with Leverabase and I'm at 691. Just got approved for a $15K credit card and I'm pre approved for a mortgage. For the first time in years, I see a future.",
     name: 'Marcus T.',
     location: 'Atlanta, GA',
-    result: '512 → 691',
+    result: '512 to 691',
     highlight: '+179 points'
   },
   {
-    quote: "I've been burned by 3 different credit repair companies — they all sent the same generic templates and nothing happened. Leverabase was different. I could literally watch disputes being filed through my portal. They removed 11 negative items including a $12K medical collection I thought would haunt me for 7 years. Paid for itself 100x over.",
+    quote: "I've been burned by 3 different credit repair companies. They all sent the same generic templates and nothing happened. Leverabase was different. I could literally watch disputes being filed through my portal. They removed 11 negative items including a $12K medical collection I thought would haunt me for 7 years. Paid for itself 100x over.",
     name: 'Jennifer R.',
     location: 'Houston, TX',
     result: '11 items removed',
     highlight: '$12K collection gone'
   },
   {
-    quote: "My wife and I had given up on buying a home. Both of us in the high 500s with old student loan issues and a car repo from 2020. Leverabase got us both above 720 in 5 months. Our lender said he'd never seen a turnaround like that. We closed on our first home last month — 3 bedrooms, backyard for the kids. Still doesn't feel real.",
+    quote: "My wife and I had given up on buying a home. Both of us in the high 500s with old student loan issues and a car repo from 2020. Leverabase got us both above 720 in 5 months. Our lender said he'd never seen a turnaround like that. We closed on our first home last month. 3 bedrooms, backyard for the kids. Still doesn't feel real.",
     name: 'David & Lisa M.',
     location: 'Phoenix, AZ',
-    result: '580s → 720+',
+    result: '580s to 720+',
     highlight: 'First home owners'
   },
   {
@@ -100,18 +114,18 @@ const testimonials = [
     highlight: 'Business scaled 2.5x'
   },
   {
-    quote: "Chapter 7 bankruptcy in 2019. I thought my financial life was over at 34. They couldn't remove the bankruptcy itself, but they cleaned up EVERYTHING around it — late payments, collections, the works. Went from 489 to 648. Just financed a reliable car for my family. I can finally breathe again.",
+    quote: "Chapter 7 bankruptcy in 2019. I thought my financial life was over at 34. They couldn't remove the bankruptcy itself, but they cleaned up EVERYTHING around it. Late payments, collections, the works. Went from 489 to 648. Just financed a reliable car for my family. I can finally breathe again.",
     name: 'Keisha B.',
     location: 'Miami, FL',
-    result: '489 → 648',
-    highlight: 'Post-bankruptcy recovery'
+    result: '489 to 648',
+    highlight: 'Post bankruptcy recovery'
   },
   {
     quote: "Single mom, tight budget, skeptical of everything. The 0% payment plan made it possible. They removed 9 negatives including a $8K repo that was destroying my score. Went from 520 to 672. Just got approved for an apartment in a safe neighborhood for my daughter. Worth every single penny.",
     name: 'Tanya S.',
     location: 'Dallas, TX',
     result: '9 items removed',
-    highlight: '520 → 672'
+    highlight: '520 to 672'
   }
 ]
 
@@ -183,34 +197,61 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background glow effects */}
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0066FF]/20 rounded-full blur-3xl" />
-        <div className="absolute top-40 right-1/4 w-96 h-96 bg-[#00D4AA]/20 rounded-full blur-3xl" />
+      <section className="relative pt-20 pb-0 overflow-hidden">
+        {/* Electric grid background */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none opacity-60"
+          style={{
+            backgroundImage: `
+              repeating-linear-gradient(0deg, transparent, transparent 49px, #00D4AA 49px, #00D4AA 50px),
+              repeating-linear-gradient(90deg, transparent, transparent 49px, #0066FF 49px, #0066FF 50px)
+            `,
+            backgroundSize: '50px 50px',
+            maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)'
+          }}
+        />
+        {/* Glow layer */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none opacity-40 blur-sm"
+          style={{
+            backgroundImage: `
+              repeating-linear-gradient(0deg, transparent, transparent 48px, #00D4AA 48px, #00D4AA 52px),
+              repeating-linear-gradient(90deg, transparent, transparent 48px, #0066FF 48px, #0066FF 52px)
+            `,
+            backgroundSize: '50px 50px',
+            maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)'
+          }}
+        />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Background glow effects */}
+        <div className="absolute top-10 left-1/4 w-72 h-72 bg-[#0066FF]/20 rounded-full blur-3xl z-0" />
+        <div className="absolute top-20 right-1/4 w-72 h-72 bg-[#00D4AA]/20 rounded-full blur-3xl z-0" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 mb-3">
               <Shield className="w-4 h-4 text-[#00D4AA]" />
               <span className="text-sm text-gray-300">Credit Restoration & Financial Freedom</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3">
               Clean Credit.
               <br />
               <span className="bg-gradient-to-r from-[#00D4AA] to-[#0066FF] bg-clip-text text-transparent">Unlock Your Future.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-400 mb-4 max-w-2xl mx-auto">
               Whether you&apos;re an individual ready to take control of your financial future or an entrepreneur building business credit — we&apos;ve got you covered.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-              <a href="#pricing" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="#pricing" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
                 View Packages
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#how-it-works" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition">
+              <a href="#how-it-works" className="w-full sm:w-auto bg-white/5 border border-white/10 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/10 transition">
                 How It Works
               </a>
             </div>
@@ -219,16 +260,16 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-16">
+      <section id="how-it-works" className="py-10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-[#00D4AA] font-medium mb-2">YOUR JOURNEY</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+          <div className="text-center mb-6">
+            <p className="text-[#00D4AA] font-medium mb-1 text-sm">YOUR JOURNEY</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
               The Path to Clean Credit
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {steps.map((step, i) => (
               <StepAccordion
                 key={i}
@@ -254,7 +295,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {plans.map((plan, i) => (
               <div
                 key={i}

@@ -59,6 +59,142 @@ body {
   background-size: 60px 60px;
 }
 
+/* Electric grid container */
+.electric-grid-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Base grid lines */
+.electric-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 212, 170, 0.4) 1px, transparent 1px),
+    linear-gradient(to right, rgba(0, 102, 255, 0.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glowing grid overlay */
+.electric-grid-glow {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to bottom, rgba(0, 212, 170, 0.6) 2px, transparent 2px),
+    linear-gradient(to right, rgba(0, 102, 255, 0.6) 2px, transparent 2px);
+  background-size: 60px 60px;
+  filter: blur(3px);
+  animation: gridPulse 2s ease-in-out infinite;
+}
+
+/* Intersection glow dots */
+.electric-grid-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle 4px at center, rgba(0, 212, 170, 1) 0%, rgba(0, 102, 255, 0.8) 50%, transparent 100%);
+  background-size: 60px 60px;
+  background-position: -1px -1px;
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+}
+
+/* Horizontal surge line */
+.surge-h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0, 212, 170, 0.3) 20%,
+    rgba(0, 212, 170, 1) 40%,
+    rgba(0, 102, 255, 1) 60%,
+    rgba(0, 102, 255, 0.3) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 10px rgba(0, 212, 170, 0.8),
+    0 0 20px rgba(0, 212, 170, 0.6),
+    0 0 40px rgba(0, 102, 255, 0.4);
+  animation: surgeDown 4s linear infinite;
+}
+
+/* Vertical surge line */
+.surge-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(0, 102, 255, 0.3) 20%,
+    rgba(0, 102, 255, 1) 40%,
+    rgba(0, 212, 170, 1) 60%,
+    rgba(0, 212, 170, 0.3) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 10px rgba(0, 102, 255, 0.8),
+    0 0 20px rgba(0, 102, 255, 0.6),
+    0 0 40px rgba(0, 212, 170, 0.4);
+  animation: surgeRight 5s linear infinite;
+}
+
+@keyframes surgeDown {
+  0% {
+    top: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    opacity: 0;
+  }
+}
+
+@keyframes surgeRight {
+  0% {
+    left: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
