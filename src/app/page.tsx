@@ -72,40 +72,46 @@ const plans = [
 // Testimonials
 const testimonials = [
   {
-    quote: "I had 7 collections and 2 charge-offs dragging my score down to 512. After 4 months with Leverabase, I'm sitting at 691. Just got approved for my first real credit card in years. These people actually know what they're doing.",
+    quote: "After my divorce, I was left with 7 collections and 2 charge-offs that tanked my score to 512. I thought I'd be stuck renting forever. Four months with Leverabase and I'm at 691 — just got approved for a $15K credit card and I'm pre-approved for a mortgage. For the first time in years, I see a future.",
     name: 'Marcus T.',
     location: 'Atlanta, GA',
-    result: '512 → 691'
+    result: '512 → 691',
+    highlight: '+179 points'
   },
   {
-    quote: "Was skeptical at first because I've been burned by credit repair companies before. But the portal where I could see everything happening in real-time made all the difference. They removed 11 items from my reports. Worth every penny.",
+    quote: "I've been burned by 3 different credit repair companies — they all sent the same generic templates and nothing happened. Leverabase was different. I could literally watch disputes being filed through my portal. They removed 11 negative items including a $12K medical collection I thought would haunt me for 7 years. Paid for itself 100x over.",
     name: 'Jennifer R.',
     location: 'Houston, TX',
-    result: '11 items removed'
+    result: '11 items removed',
+    highlight: '$12K collection gone'
   },
   {
-    quote: "We needed to clean up our credit before applying for a mortgage. Leverabase got us from the high 500s to 720+ in about 5 months. Our lender couldn't believe the turnaround. Closed on our house last month.",
+    quote: "My wife and I had given up on buying a home. Both of us in the high 500s with old student loan issues and a car repo from 2020. Leverabase got us both above 720 in 5 months. Our lender said he'd never seen a turnaround like that. We closed on our first home last month — 3 bedrooms, backyard for the kids. Still doesn't feel real.",
     name: 'David & Lisa M.',
     location: 'Phoenix, AZ',
-    result: '580s → 720+'
+    result: '580s → 720+',
+    highlight: 'First home owners'
   },
   {
-    quote: "Went with the Business Builder package. Not only did they fix my personal credit, but they helped me set up my LLC properly and got me $42K in business credit lines. My trucking business is finally funded.",
+    quote: "The Business Builder package changed my life. They cleaned up my personal credit (went from 540 to 695), set up my LLC properly, and helped me secure $42K in business credit lines at 0% APR. My trucking company went from 2 trucks to 5 in 8 months. Best investment I've ever made.",
     name: 'Anthony W.',
     location: 'Chicago, IL',
-    result: '$42K in funding'
+    result: '$42K in funding',
+    highlight: 'Business scaled 2.5x'
   },
   {
-    quote: "I had a bankruptcy from 2019 that I thought would haunt me forever. They couldn't remove that obviously, but they cleaned up everything else around it. Went from 489 to 648. I can actually breathe now.",
+    quote: "Chapter 7 bankruptcy in 2019. I thought my financial life was over at 34. They couldn't remove the bankruptcy itself, but they cleaned up EVERYTHING around it — late payments, collections, the works. Went from 489 to 648. Just financed a reliable car for my family. I can finally breathe again.",
     name: 'Keisha B.',
     location: 'Miami, FL',
-    result: '489 → 648'
+    result: '489 → 648',
+    highlight: 'Post-bankruptcy recovery'
   },
   {
-    quote: "The payment plan made this affordable for me. And unlike other companies that just send generic letters, I could tell they actually researched my specific situation. Got 9 negatives removed including a repo.",
-    name: 'Robert S.',
+    quote: "Single mom, tight budget, skeptical of everything. The 0% payment plan made it possible. They removed 9 negatives including a $8K repo that was destroying my score. Went from 520 to 672. Just got approved for an apartment in a safe neighborhood for my daughter. Worth every single penny.",
+    name: 'Tanya S.',
     location: 'Dallas, TX',
-    result: '9 items removed'
+    result: '9 items removed',
+    highlight: '520 → 672'
   }
 ]
 
@@ -304,17 +310,22 @@ export default function Home() {
             {testimonials.map((testimonial, i) => (
               <div
                 key={i}
-                className="bg-[#141B2D] border border-white/5 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+                className="bg-[#141B2D] border border-white/5 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] flex flex-col"
               >
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-[#00D4AA] text-[#00D4AA]" />
-                  ))}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-[#00D4AA] text-[#00D4AA]" />
+                    ))}
+                  </div>
+                  <div className="bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white text-xs font-bold px-3 py-1 rounded-full">
+                    {testimonial.highlight}
+                  </div>
                 </div>
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-300 text-sm mb-6 leading-relaxed flex-1">
                   &quot;{testimonial.quote}&quot;
                 </p>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between pt-4 border-t border-white/5">
                   <div>
                     <div className="font-semibold text-white">{testimonial.name}</div>
                     <div className="text-sm text-gray-500">{testimonial.location}</div>
