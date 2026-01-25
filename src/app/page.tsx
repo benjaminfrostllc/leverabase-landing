@@ -200,7 +200,7 @@ export default function Home() {
       <section className="relative pt-20 pb-0 overflow-hidden">
         {/* Electric grid background */}
         <div
-          className="absolute inset-0 z-0 pointer-events-none opacity-20"
+          className="absolute inset-0 z-0 pointer-events-none opacity-35"
           style={{
             backgroundImage: `
               repeating-linear-gradient(0deg, transparent, transparent 59px, #00D4AA 59px, #00D4AA 60px),
@@ -213,7 +213,7 @@ export default function Home() {
         />
         {/* Glow layer */}
         <div
-          className="absolute inset-0 z-0 pointer-events-none opacity-15 blur-sm"
+          className="absolute inset-0 z-0 pointer-events-none opacity-25 blur-sm"
           style={{
             backgroundImage: `
               repeating-linear-gradient(0deg, transparent, transparent 58px, #00D4AA 58px, #00D4AA 62px),
