@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Check, ArrowRight, Building2, CreditCard, TrendingUp, Shield, Users, Zap, ChevronRight, Star, DollarSign, LineChart, BadgeCheck, Phone, FileText, Target, Rocket } from 'lucide-react'
 
 // Service card data with expanded details
@@ -140,26 +139,21 @@ const steps = [
 ]
 
 function ServiceCard({ service }: { service: typeof services[0] }) {
-  const [isHovered, setIsHovered] = useState(false)
   const Icon = service.icon
 
   return (
-    <div
-      className="relative bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover group cursor-pointer overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="group relative bg-[#141B2D] border border-white/5 rounded-2xl p-8 cursor-pointer overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] min-h-[320px]">
       {/* Default content */}
-      <div className={`transition-all duration-300 ${isHovered ? 'opacity-0 transform -translate-y-4' : 'opacity-100'}`}>
-        <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
-          <Icon className="w-6 h-6 text-secondary" />
+      <div className="transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-4">
+        <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA]/20 to-[#0066FF]/20 rounded-xl flex items-center justify-center mb-6">
+          <Icon className="w-6 h-6 text-[#00D4AA]" />
         </div>
         <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
         <p className="text-gray-400 mb-6">{service.description}</p>
         <ul className="space-y-3">
           {service.features.map((feature, i) => (
             <li key={i} className="flex items-start gap-3">
-              <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+              <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
               <span className="text-white">{feature}</span>
             </li>
           ))}
@@ -167,21 +161,21 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
       </div>
 
       {/* Hover content */}
-      <div className={`absolute inset-0 p-8 bg-gradient-to-br from-dark-secondary to-dark transition-all duration-300 ${isHovered ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4 pointer-events-none'}`}>
-        <div className="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center mb-4">
+      <div className="absolute inset-0 p-8 bg-gradient-to-br from-[#141B2D] to-[#0A0F1C] transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-xl flex items-center justify-center mb-4">
           <Icon className="w-5 h-5 text-white" />
         </div>
         <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-        <p className="text-secondary text-sm font-medium mb-4">What's Included:</p>
+        <p className="text-[#00D4AA] text-sm font-medium mb-4">What&apos;s Included:</p>
         <ul className="space-y-2">
           {service.expandedDetails.map((detail, i) => (
             <li key={i} className="flex items-start gap-2">
-              <ChevronRight className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+              <ChevronRight className="w-4 h-4 text-[#00D4AA] flex-shrink-0 mt-0.5" />
               <span className="text-white text-sm">{detail}</span>
             </li>
           ))}
         </ul>
-        <a href="https://leverabase.app" className="mt-4 inline-flex items-center gap-2 text-secondary hover:text-white transition text-sm font-medium">
+        <a href="https://leverabase.app" className="mt-4 inline-flex items-center gap-2 text-[#00D4AA] hover:text-white transition text-sm font-medium">
           Learn More <ArrowRight className="w-4 h-4" />
         </a>
       </div>
@@ -190,22 +184,17 @@ function ServiceCard({ service }: { service: typeof services[0] }) {
 }
 
 function StepCard({ step, isLast }: { step: typeof steps[0], isLast: boolean }) {
-  const [isHovered, setIsHovered] = useState(false)
   const Icon = step.icon
 
   return (
     <div className="relative">
       {!isLast && (
-        <div className="absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-secondary to-primary hidden lg:block" />
+        <div className="absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-[#00D4AA] to-[#0066FF] hidden lg:block" />
       )}
-      <div
-        className="relative bg-dark border border-white/5 rounded-2xl p-6 text-center card-hover group cursor-pointer overflow-hidden min-h-[280px]"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+      <div className="group relative bg-[#0A0F1C] border border-white/5 rounded-2xl p-6 text-center cursor-pointer overflow-hidden min-h-[280px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
         {/* Default content */}
-        <div className={`transition-all duration-300 ${isHovered ? 'opacity-0 transform -translate-y-4' : 'opacity-100'}`}>
-          <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
+        <div className="transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-4">
+          <div className="w-16 h-16 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
             {step.number}
           </div>
           <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
@@ -213,15 +202,15 @@ function StepCard({ step, isLast }: { step: typeof steps[0], isLast: boolean }) 
         </div>
 
         {/* Hover content */}
-        <div className={`absolute inset-0 p-6 bg-gradient-to-br from-dark to-dark-secondary flex flex-col transition-all duration-300 ${isHovered ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4 pointer-events-none'}`}>
-          <div className="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-3">
+        <div className="absolute inset-0 p-6 bg-gradient-to-br from-[#0A0F1C] to-[#141B2D] flex flex-col transition-all duration-300 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+          <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center mx-auto mb-3">
             <Icon className="w-6 h-6 text-white" />
           </div>
           <h3 className="text-base font-bold text-white mb-3">{step.expandedTitle}</h3>
           <ul className="space-y-2 text-left flex-1">
             {step.expandedDetails.map((detail, i) => (
               <li key={i} className="flex items-start gap-2">
-                <Check className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+                <Check className="w-4 h-4 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                 <span className="text-white text-xs">{detail}</span>
               </li>
             ))}
@@ -234,13 +223,13 @@ function StepCard({ step, isLast }: { step: typeof steps[0], isLast: boolean }) 
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-dark">
+    <main className="min-h-screen bg-[#0A0F1C]">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-dark/80 backdrop-blur-lg border-b border-white/5">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0F1C]/80 backdrop-blur-lg border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-secondary to-primary rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-lg flex items-center justify-center">
                 <Building2 className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Leverabase</span>
@@ -253,7 +242,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4">
               <a href="https://leverabase.app" className="text-gray-400 hover:text-white transition hidden sm:block">Log In</a>
-              <a href="https://leverabase.app" className="bg-gradient-to-r from-secondary to-primary text-white px-5 py-2.5 rounded-lg font-medium hover:opacity-90 transition">
+              <a href="https://leverabase.app" className="bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-5 py-2.5 rounded-lg font-medium hover:opacity-90 transition">
                 Get Started
               </a>
             </div>
@@ -264,13 +253,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-grid">
         {/* Background glow effects */}
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute top-40 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#0066FF]/20 rounded-full blur-3xl" />
+        <div className="absolute top-40 right-1/4 w-96 h-96 bg-[#00D4AA]/20 rounded-full blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6">
-              <Zap className="w-4 h-4 text-secondary" />
+              <Zap className="w-4 h-4 text-[#00D4AA]" />
               <span className="text-sm text-gray-300">Trusted by 2,500+ businesses</span>
             </div>
 
@@ -285,7 +274,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 glow-primary">
+              <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
                 Start Building Credit
                 <ArrowRight className="w-5 h-5" />
               </a>
@@ -297,15 +286,15 @@ export default function Home() {
             {/* Trust indicators */}
             <div className="flex flex-wrap items-center justify-center gap-8 text-gray-500">
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-secondary" />
+                <Shield className="w-5 h-5 text-[#00D4AA]" />
                 <span className="text-sm">Bank-Level Security</span>
               </div>
               <div className="flex items-center gap-2">
-                <BadgeCheck className="w-5 h-5 text-secondary" />
+                <BadgeCheck className="w-5 h-5 text-[#00D4AA]" />
                 <span className="text-sm">No Hard Credit Pulls</span>
               </div>
               <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-secondary" />
+                <Star className="w-5 h-5 text-[#00D4AA]" />
                 <span className="text-sm">4.9/5 Rating</span>
               </div>
             </div>
@@ -345,7 +334,7 @@ export default function Home() {
               Complete Funding Solutions
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Whether you're starting fresh or scaling up, we have the right funding solution for your business. <span className="text-secondary">Hover over each card to see what's included.</span>
+              Whether you&apos;re starting fresh or scaling up, we have the right funding solution for your business. <span className="text-[#00D4AA]">Hover over each card to see what&apos;s included.</span>
             </p>
           </div>
 
@@ -358,14 +347,14 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 bg-dark-secondary/50">
+      <section id="how-it-works" className="py-24 bg-[#141B2D]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               How Leverabase Works
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Our proven 4-step process helps you build credit and secure funding faster than going it alone. <span className="text-secondary">Hover to see what happens at each step.</span>
+              Our proven 4-step process helps you build credit and secure funding faster than going it alone. <span className="text-[#00D4AA]">Hover to see what happens at each step.</span>
             </p>
           </div>
 
@@ -391,7 +380,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Starter Plan */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
+            <div className="bg-[#141B2D] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
               <h3 className="text-xl font-bold text-white mb-2">Starter</h3>
               <p className="text-gray-400 mb-4">For new businesses building credit</p>
               <div className="mb-6">
@@ -400,19 +389,19 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Business credit profile setup</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">5 starter vendor accounts</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Credit monitoring setup</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Email support</span>
                 </li>
               </ul>
@@ -422,8 +411,8 @@ export default function Home() {
             </div>
 
             {/* Growth Plan */}
-            <div className="bg-gradient-to-b from-dark-secondary to-dark border border-secondary/30 rounded-2xl p-8 relative glow-secondary card-hover">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-secondary to-primary text-white text-sm font-semibold px-4 py-1 rounded-full">
+            <div className="bg-gradient-to-b from-[#141B2D] to-[#0A0F1C] border border-[#00D4AA]/30 rounded-2xl p-8 relative shadow-[0_0_60px_rgba(0,212,170,0.2)] transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white text-sm font-semibold px-4 py-1 rounded-full">
                 Most Popular
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Growth</h3>
@@ -434,33 +423,33 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Everything in Starter</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">15 vendor accounts</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Business credit card applications</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Personal credit optimization</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">1-on-1 strategy calls</span>
                 </li>
               </ul>
-              <a href="https://leverabase.app" className="block w-full bg-gradient-to-r from-secondary to-primary text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition">
+              <a href="https://leverabase.app" className="block w-full bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white text-center py-3 rounded-xl font-semibold hover:opacity-90 transition">
                 Get Started
               </a>
             </div>
 
             {/* Enterprise Plan */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
+            <div className="bg-[#141B2D] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
               <h3 className="text-xl font-bold text-white mb-2">Enterprise</h3>
               <p className="text-gray-400 mb-4">Full-service funding solutions</p>
               <div className="mb-6">
@@ -469,27 +458,27 @@ export default function Home() {
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Everything in Growth</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Unlimited vendor accounts</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Business loan applications</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">SBA loan guidance</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">Dedicated account manager</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-[#00D4AA] flex-shrink-0 mt-0.5" />
                   <span className="text-white">12 months support</span>
                 </li>
               </ul>
@@ -502,7 +491,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24 bg-dark-secondary/50">
+      <section id="testimonials" className="py-24 bg-[#141B2D]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -514,17 +503,17 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-dark border border-white/5 rounded-2xl p-8 card-hover">
+            <div className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
+                  <Star key={i} className="w-5 h-5 fill-[#00D4AA] text-[#00D4AA]" />
                 ))}
               </div>
               <p className="text-gray-300 mb-6">
-                "Started with zero business credit. Within 6 months, I had $75K in credit lines and just got approved for a $150K business loan. Leverabase made it possible."
+                &quot;Started with zero business credit. Within 6 months, I had $75K in credit lines and just got approved for a $150K business loan. Leverabase made it possible.&quot;
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center text-white font-bold">
                   MJ
                 </div>
                 <div>
@@ -534,17 +523,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-dark border border-white/5 rounded-2xl p-8 card-hover">
+            <div className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
+                  <Star key={i} className="w-5 h-5 fill-[#00D4AA] text-[#00D4AA]" />
                 ))}
               </div>
               <p className="text-gray-300 mb-6">
-                "The team at Leverabase helped me fix my personal credit and build my business credit simultaneously. Now I have over $200K in available funding."
+                &quot;The team at Leverabase helped me fix my personal credit and build my business credit simultaneously. Now I have over $200K in available funding.&quot;
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center text-white font-bold">
                   SR
                 </div>
                 <div>
@@ -554,17 +543,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-dark border border-white/5 rounded-2xl p-8 card-hover">
+            <div className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
+                  <Star key={i} className="w-5 h-5 fill-[#00D4AA] text-[#00D4AA]" />
                 ))}
               </div>
               <p className="text-gray-300 mb-6">
-                "I was skeptical at first, but the results speak for themselves. Got approved for 5 business credit cards totaling $85K in the first 90 days."
+                &quot;I was skeptical at first, but the results speak for themselves. Got approved for 5 business credit cards totaling $85K in the first 90 days.&quot;
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-full flex items-center justify-center text-white font-bold">
                   DW
                 </div>
                 <div>
@@ -587,7 +576,7 @@ export default function Home() {
             Join 2,500+ business owners who have used Leverabase to build credit and access the funding they need. Start your journey today.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 glow-primary">
+            <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
               Start Free Consultation
               <ArrowRight className="w-5 h-5" />
             </a>
@@ -604,7 +593,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-secondary to-primary rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-[#00D4AA] to-[#0066FF] rounded-lg flex items-center justify-center">
                   <Building2 className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-xl font-bold text-white">Leverabase</span>
