@@ -200,28 +200,28 @@ export default function Home() {
       <section className="relative pt-20 pb-0 overflow-hidden">
         {/* Electric grid background */}
         <div
-          className="absolute inset-0 z-0 pointer-events-none opacity-60"
+          className="absolute inset-0 z-0 pointer-events-none opacity-20"
           style={{
             backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 49px, #00D4AA 49px, #00D4AA 50px),
-              repeating-linear-gradient(90deg, transparent, transparent 49px, #0066FF 49px, #0066FF 50px)
+              repeating-linear-gradient(0deg, transparent, transparent 59px, #00D4AA 59px, #00D4AA 60px),
+              repeating-linear-gradient(90deg, transparent, transparent 59px, #0066FF 59px, #0066FF 60px)
             `,
-            backgroundSize: '50px 50px',
-            maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)'
+            backgroundSize: '60px 60px',
+            maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)'
           }}
         />
         {/* Glow layer */}
         <div
-          className="absolute inset-0 z-0 pointer-events-none opacity-40 blur-sm"
+          className="absolute inset-0 z-0 pointer-events-none opacity-15 blur-sm"
           style={{
             backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 48px, #00D4AA 48px, #00D4AA 52px),
-              repeating-linear-gradient(90deg, transparent, transparent 48px, #0066FF 48px, #0066FF 52px)
+              repeating-linear-gradient(0deg, transparent, transparent 58px, #00D4AA 58px, #00D4AA 62px),
+              repeating-linear-gradient(90deg, transparent, transparent 58px, #0066FF 58px, #0066FF 62px)
             `,
-            backgroundSize: '50px 50px',
-            maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)'
+            backgroundSize: '60px 60px',
+            maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)'
           }}
         />
 
