@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Check, ArrowRight, Building2, CreditCard, Shield, Zap, ChevronDown, Star, Sparkles, FileText, Eye, BadgeCheck, DollarSign, Clock, HeartHandshake, Smartphone, Mail } from 'lucide-react'
 
 // How it works steps
@@ -125,33 +124,33 @@ const guarantees = [
   { icon: CreditCard, title: '0% Financing', description: '6-month payment plans, no credit check required.' }
 ]
 
-function StepAccordion({ step, isOpen, onClick }: { step: typeof steps[0], isOpen: boolean, onClick: () => void }) {
+function StepAccordion({ step }: { step: typeof steps[0] }) {
   return (
-    <div
-      className={`border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#141B2D]' : 'bg-[#0A0F1C] hover:bg-[#0F1420]'}`}
-    >
-      <button
-        onClick={onClick}
-        className="w-full p-6 flex items-center justify-between text-left"
-      >
-        <div className="flex items-center gap-4">
-          <span className="text-2xl font-bold text-[#00D4AA]">{step.number}</span>
-          <span className="text-lg font-semibold text-white">{step.title}</span>
+    <div className="group relative rounded-2xl transition-all duration-300">
+      {/* Glow effect border */}
+      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#00D4AA] to-[#0066FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
+      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#00D4AA] to-[#0066FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Card content */}
+      <div className="relative bg-[#0A0F1C] group-hover:bg-[#141B2D] rounded-2xl overflow-hidden transition-all duration-300">
+        <div className="p-6 flex items-center justify-between cursor-pointer">
+          <div className="flex items-center gap-4">
+            <span className="text-2xl font-bold text-[#00D4AA]">{step.number}</span>
+            <span className="text-lg font-semibold text-white">{step.title}</span>
+          </div>
+          <ChevronDown className="w-5 h-5 text-[#00D4AA] transition-transform duration-300 group-hover:rotate-180" />
         </div>
-        <ChevronDown className={`w-5 h-5 text-[#00D4AA] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-        <p className="px-6 pb-6 text-gray-400 leading-relaxed">
-          {step.description}
-        </p>
+        <div className="overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100">
+          <p className="px-6 pb-6 text-gray-400 leading-relaxed">
+            {step.description}
+          </p>
+        </div>
       </div>
     </div>
   )
 }
 
 export default function Home() {
-  const [openStep, setOpenStep] = useState<number>(0)
-
   return (
     <main className="min-h-screen bg-[#0A0F1C]">
       {/* Navigation */}
@@ -200,7 +199,7 @@ export default function Home() {
               Whether you&apos;re an individual ready to take control of your financial future or an entrepreneur building business credit — we&apos;ve got you covered.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <a href="#pricing" className="w-full sm:w-auto bg-gradient-to-r from-[#00D4AA] to-[#0066FF] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
                 View Packages
                 <ArrowRight className="w-5 h-5" />
@@ -214,9 +213,9 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24">
+      <section id="how-it-works" className="py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <p className="text-[#00D4AA] font-medium mb-2">YOUR JOURNEY</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">
               The Path to Clean Credit
@@ -228,8 +227,6 @@ export default function Home() {
               <StepAccordion
                 key={i}
                 step={step}
-                isOpen={openStep === i}
-                onClick={() => setOpenStep(openStep === i ? -1 : i)}
               />
             ))}
           </div>
@@ -237,9 +234,9 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-[#141B2D]/30">
+      <section id="pricing" className="py-16 bg-[#141B2D]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <p className="text-[#00D4AA] font-medium mb-2">SIMPLE PRICING</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               Choose Your Path
@@ -297,9 +294,9 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-24">
+      <section id="testimonials" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <p className="text-[#00D4AA] font-medium mb-2">REAL RESULTS</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">
               What Our Clients Say
@@ -341,9 +338,9 @@ export default function Home() {
       </section>
 
       {/* Guarantees Section */}
-      <section id="guarantees" className="py-24 bg-[#141B2D]/30">
+      <section id="guarantees" className="py-16 bg-[#141B2D]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <p className="text-[#00D4AA] font-medium mb-2">OUR COMMITMENT</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">
               Guarantees & Features
@@ -371,7 +368,7 @@ export default function Home() {
       </section>
 
       {/* App Coming Soon Section */}
-      <section className="py-24">
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-br from-[#141B2D] to-[#0A0F1C] border border-white/10 rounded-3xl p-8 md:p-12 text-center">
             <div className="inline-flex items-center gap-2 bg-[#00D4AA]/10 text-[#00D4AA] rounded-full px-4 py-2 mb-6 text-sm font-medium">
@@ -392,7 +389,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-[#141B2D]/30">
+      <section className="py-16 bg-[#141B2D]/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Ready for Financial Freedom?
