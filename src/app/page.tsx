@@ -1,6 +1,236 @@
 'use client'
 
-import { Check, ArrowRight, Building2, CreditCard, TrendingUp, Shield, Users, Zap, ChevronRight, Star, DollarSign, LineChart, BadgeCheck } from 'lucide-react'
+import { useState } from 'react'
+import { Check, ArrowRight, Building2, CreditCard, TrendingUp, Shield, Users, Zap, ChevronRight, Star, DollarSign, LineChart, BadgeCheck, Phone, FileText, Target, Rocket } from 'lucide-react'
+
+// Service card data with expanded details
+const services = [
+  {
+    icon: TrendingUp,
+    title: 'Business Credit Building',
+    description: 'Establish and build your business credit profile from scratch with our proven system.',
+    features: ['Net 30/60/90 vendor accounts', 'Business credit monitoring', 'D&B, Experian, Equifax reporting'],
+    expandedDetails: [
+      'We set up your business with 5-15 reporting vendor accounts',
+      'Monitor your Paydex, Intelliscore & SBFE scores',
+      'Strategic payment timing to maximize score growth',
+      'Dispute inaccurate information on your behalf'
+    ]
+  },
+  {
+    icon: CreditCard,
+    title: 'Business Credit Cards',
+    description: 'Access high-limit business credit cards with 0% APR introductory offers.',
+    features: ['$10K-$100K+ credit limits', '0% APR for 12-21 months', 'Cashback & travel rewards'],
+    expandedDetails: [
+      'Curated list of best cards for your profile',
+      'Application timing strategy for approvals',
+      'Credit limit increase techniques',
+      'Balance transfer optimization'
+    ]
+  },
+  {
+    icon: LineChart,
+    title: 'Lines of Credit',
+    description: 'Flexible revolving credit lines for ongoing business needs and cash flow.',
+    features: ['$25K-$250K credit lines', 'Draw funds as needed', 'Only pay on what you use'],
+    expandedDetails: [
+      'Bank and fintech LOC options',
+      'Unsecured and secured options',
+      'Same-day funding available',
+      'Renewable credit facilities'
+    ]
+  },
+  {
+    icon: DollarSign,
+    title: 'Business Loans',
+    description: 'Term loans for larger investments, equipment, real estate, or expansion.',
+    features: ['$50K-$5M+ loan amounts', 'Competitive rates from 6%', 'Flexible 1-10 year terms'],
+    expandedDetails: [
+      'Term loans, equipment financing, commercial RE',
+      'Revenue-based financing options',
+      'Invoice factoring & AR financing',
+      'Merchant cash advances when needed'
+    ]
+  },
+  {
+    icon: Users,
+    title: 'Personal Credit Services',
+    description: 'Improve your personal credit to unlock better business funding options.',
+    features: ['Credit repair & optimization', 'Personal funding options', 'Score improvement strategies'],
+    expandedDetails: [
+      'Dispute negative items & errors',
+      'Authorized user tradelines',
+      'Personal credit card stacking',
+      'Debt payoff strategies'
+    ]
+  },
+  {
+    icon: Building2,
+    title: 'SBA Loans',
+    description: 'Government-backed loans with favorable terms for qualified businesses.',
+    features: ['Up to $5M in funding', 'Lower down payments', 'Extended repayment terms'],
+    expandedDetails: [
+      'SBA 7(a) general purpose loans',
+      'SBA 504 real estate & equipment',
+      'SBA Microloans for startups',
+      'Full application preparation'
+    ]
+  }
+]
+
+// How it works steps with expanded details
+const steps = [
+  {
+    number: 1,
+    title: 'Free Consultation',
+    description: 'We analyze your current credit situation and create a custom funding roadmap.',
+    icon: Phone,
+    expandedTitle: 'What Happens in Your Consultation',
+    expandedDetails: [
+      'Review your personal & business credit reports',
+      'Identify quick wins and areas to improve',
+      'Create a custom 90-day funding roadmap',
+      'Set realistic funding goals and timeline',
+      'Answer all your questions about the process'
+    ]
+  },
+  {
+    number: 2,
+    title: 'Build Foundation',
+    description: 'Establish your business credit profile with the right vendor accounts and tradelines.',
+    icon: FileText,
+    expandedTitle: 'Foundation Building Process',
+    expandedDetails: [
+      'Register with D&B, Experian, Equifax business',
+      'Open 5-10 starter vendor accounts',
+      'Establish payment history that reports',
+      'Build your Paydex & business scores',
+      'Create business credibility documents'
+    ]
+  },
+  {
+    number: 3,
+    title: 'Scale Credit',
+    description: 'Apply for business credit cards and credit lines as your profile strengthens.',
+    icon: Target,
+    expandedTitle: 'Credit Scaling Strategy',
+    expandedDetails: [
+      'Apply for store credit cards first',
+      'Graduate to cash credit cards',
+      'Request credit limit increases',
+      'Add revolving lines of credit',
+      'Stack multiple approvals strategically'
+    ]
+  },
+  {
+    number: 4,
+    title: 'Access Funding',
+    description: 'Qualify for larger loans and credit lines to fuel your business growth.',
+    icon: Rocket,
+    expandedTitle: 'Funding Access & Beyond',
+    expandedDetails: [
+      'Apply for term loans & large LOCs',
+      'Access SBA loan programs',
+      'Leverage your credit for growth',
+      'Ongoing credit optimization',
+      'Lifetime access to funding strategies'
+    ]
+  }
+]
+
+function ServiceCard({ service }: { service: typeof services[0] }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const Icon = service.icon
+
+  return (
+    <div
+      className="relative bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover group cursor-pointer overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Default content */}
+      <div className={`transition-all duration-300 ${isHovered ? 'opacity-0 transform -translate-y-4' : 'opacity-100'}`}>
+        <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
+          <Icon className="w-6 h-6 text-secondary" />
+        </div>
+        <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+        <p className="text-gray-400 mb-6">{service.description}</p>
+        <ul className="space-y-3">
+          {service.features.map((feature, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+              <span className="text-white">{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Hover content */}
+      <div className={`absolute inset-0 p-8 bg-gradient-to-br from-dark-secondary to-dark transition-all duration-300 ${isHovered ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4 pointer-events-none'}`}>
+        <div className="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center mb-4">
+          <Icon className="w-5 h-5 text-white" />
+        </div>
+        <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
+        <p className="text-secondary text-sm font-medium mb-4">What's Included:</p>
+        <ul className="space-y-2">
+          {service.expandedDetails.map((detail, i) => (
+            <li key={i} className="flex items-start gap-2">
+              <ChevronRight className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+              <span className="text-white text-sm">{detail}</span>
+            </li>
+          ))}
+        </ul>
+        <a href="https://leverabase.app" className="mt-4 inline-flex items-center gap-2 text-secondary hover:text-white transition text-sm font-medium">
+          Learn More <ArrowRight className="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  )
+}
+
+function StepCard({ step, isLast }: { step: typeof steps[0], isLast: boolean }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const Icon = step.icon
+
+  return (
+    <div className="relative">
+      {!isLast && (
+        <div className="absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-secondary to-primary hidden lg:block" />
+      )}
+      <div
+        className="relative bg-dark border border-white/5 rounded-2xl p-6 text-center card-hover group cursor-pointer overflow-hidden min-h-[280px]"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Default content */}
+        <div className={`transition-all duration-300 ${isHovered ? 'opacity-0 transform -translate-y-4' : 'opacity-100'}`}>
+          <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
+            {step.number}
+          </div>
+          <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
+          <p className="text-gray-400 text-sm">{step.description}</p>
+        </div>
+
+        {/* Hover content */}
+        <div className={`absolute inset-0 p-6 bg-gradient-to-br from-dark to-dark-secondary flex flex-col transition-all duration-300 ${isHovered ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4 pointer-events-none'}`}>
+          <div className="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-3">
+            <Icon className="w-6 h-6 text-white" />
+          </div>
+          <h3 className="text-base font-bold text-white mb-3">{step.expandedTitle}</h3>
+          <ul className="space-y-2 text-left flex-1">
+            {step.expandedDetails.map((detail, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" />
+                <span className="text-white text-xs">{detail}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -115,160 +345,14 @@ export default function Home() {
               Complete Funding Solutions
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Whether you're starting fresh or scaling up, we have the right funding solution for your business.
+              Whether you're starting fresh or scaling up, we have the right funding solution for your business. <span className="text-secondary">Hover over each card to see what's included.</span>
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Business Credit Building */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
-              <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
-                <TrendingUp className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Business Credit Building</h3>
-              <p className="text-gray-400 mb-6">
-                Establish and build your business credit profile from scratch with our proven system.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Net 30/60/90 vendor accounts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Business credit monitoring</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">D&B, Experian, Equifax reporting</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Business Credit Cards */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
-              <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
-                <CreditCard className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Business Credit Cards</h3>
-              <p className="text-gray-400 mb-6">
-                Access high-limit business credit cards with 0% APR introductory offers.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">$10K-$100K+ credit limits</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">0% APR for 12-21 months</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Cashback & travel rewards</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Business Lines of Credit */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
-              <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
-                <LineChart className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Lines of Credit</h3>
-              <p className="text-gray-400 mb-6">
-                Flexible revolving credit lines for ongoing business needs and cash flow.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">$25K-$250K credit lines</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Draw funds as needed</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Only pay on what you use</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Business Loans */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
-              <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
-                <DollarSign className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Business Loans</h3>
-              <p className="text-gray-400 mb-6">
-                Term loans for larger investments, equipment, real estate, or expansion.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">$50K-$5M+ loan amounts</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Competitive rates from 6%</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Flexible 1-10 year terms</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Personal Credit Repair */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
-              <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
-                <Users className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Personal Credit Services</h3>
-              <p className="text-gray-400 mb-6">
-                Improve your personal credit to unlock better business funding options.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Credit repair & optimization</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Personal funding options</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Score improvement strategies</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* SBA Loans */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
-              <div className="w-12 h-12 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-xl flex items-center justify-center mb-6">
-                <Building2 className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">SBA Loans</h3>
-              <p className="text-gray-400 mb-6">
-                Government-backed loans with favorable terms for qualified businesses.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Up to $5M in funding</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Lower down payments</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span className="text-white">Extended repayment terms</span>
-                </li>
-              </ul>
-            </div>
+            {services.map((service, i) => (
+              <ServiceCard key={i} service={service} />
+            ))}
           </div>
         </div>
       </section>
@@ -281,61 +365,14 @@ export default function Home() {
               How Leverabase Works
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Our proven 4-step process helps you build credit and secure funding faster than going it alone.
+              Our proven 4-step process helps you build credit and secure funding faster than going it alone. <span className="text-secondary">Hover to see what happens at each step.</span>
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="relative">
-              <div className="absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-secondary to-primary hidden lg:block" />
-              <div className="relative bg-dark border border-white/5 rounded-2xl p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-                  1
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Free Consultation</h3>
-                <p className="text-gray-400 text-sm">
-                  We analyze your current credit situation and create a custom funding roadmap.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-secondary to-primary hidden lg:block" />
-              <div className="relative bg-dark border border-white/5 rounded-2xl p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-                  2
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Build Foundation</h3>
-                <p className="text-gray-400 text-sm">
-                  Establish your business credit profile with the right vendor accounts and tradelines.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-secondary to-primary hidden lg:block" />
-              <div className="relative bg-dark border border-white/5 rounded-2xl p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-                  3
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Scale Credit</h3>
-                <p className="text-gray-400 text-sm">
-                  Apply for business credit cards and credit lines as your profile strengthens.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="relative bg-dark border border-white/5 rounded-2xl p-6 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold text-white">
-                  4
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Access Funding</h3>
-                <p className="text-gray-400 text-sm">
-                  Qualify for larger loans and credit lines to fuel your business growth.
-                </p>
-              </div>
-            </div>
+            {steps.map((step, i) => (
+              <StepCard key={i} step={step} isLast={i === steps.length - 1} />
+            ))}
           </div>
         </div>
       </section>
@@ -354,7 +391,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Starter Plan */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8">
+            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
               <h3 className="text-xl font-bold text-white mb-2">Starter</h3>
               <p className="text-gray-400 mb-4">For new businesses building credit</p>
               <div className="mb-6">
@@ -385,7 +422,7 @@ export default function Home() {
             </div>
 
             {/* Growth Plan */}
-            <div className="bg-gradient-to-b from-dark-secondary to-dark border border-secondary/30 rounded-2xl p-8 relative glow-secondary">
+            <div className="bg-gradient-to-b from-dark-secondary to-dark border border-secondary/30 rounded-2xl p-8 relative glow-secondary card-hover">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-secondary to-primary text-white text-sm font-semibold px-4 py-1 rounded-full">
                 Most Popular
               </div>
@@ -423,7 +460,7 @@ export default function Home() {
             </div>
 
             {/* Enterprise Plan */}
-            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8">
+            <div className="bg-dark-secondary border border-white/5 rounded-2xl p-8 card-hover">
               <h3 className="text-xl font-bold text-white mb-2">Enterprise</h3>
               <p className="text-gray-400 mb-4">Full-service funding solutions</p>
               <div className="mb-6">
@@ -477,7 +514,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-dark border border-white/5 rounded-2xl p-8">
+            <div className="bg-dark border border-white/5 rounded-2xl p-8 card-hover">
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
@@ -497,7 +534,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-dark border border-white/5 rounded-2xl p-8">
+            <div className="bg-dark border border-white/5 rounded-2xl p-8 card-hover">
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
@@ -517,7 +554,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-dark border border-white/5 rounded-2xl p-8">
+            <div className="bg-dark border border-white/5 rounded-2xl p-8 card-hover">
               <div className="flex items-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-secondary text-secondary" />
@@ -580,10 +617,10 @@ export default function Home() {
             <div>
               <h4 className="font-semibold text-white mb-4">Services</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">Business Credit Building</a></li>
-                <li><a href="#" className="hover:text-white transition">Business Credit Cards</a></li>
-                <li><a href="#" className="hover:text-white transition">Lines of Credit</a></li>
-                <li><a href="#" className="hover:text-white transition">Business Loans</a></li>
+                <li><a href="#services" className="hover:text-white transition">Business Credit Building</a></li>
+                <li><a href="#services" className="hover:text-white transition">Business Credit Cards</a></li>
+                <li><a href="#services" className="hover:text-white transition">Lines of Credit</a></li>
+                <li><a href="#services" className="hover:text-white transition">Business Loans</a></li>
               </ul>
             </div>
 
