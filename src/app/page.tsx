@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Check, ArrowRight, Building2, CreditCard, Shield, Zap, ChevronDown, Star, Sparkles, FileText, Eye, BadgeCheck, DollarSign, Clock, HeartHandshake, Smartphone, Mail } from 'lucide-react'
 
 // How it works steps
@@ -124,23 +125,26 @@ const guarantees = [
   { icon: CreditCard, title: '0% Financing', description: '6-month payment plans, no credit check required.' }
 ]
 
-function StepAccordion({ step }: { step: typeof steps[0] }) {
+function StepAccordion({ step, isOpen, onToggle }: { step: typeof steps[0], isOpen: boolean, onToggle: () => void }) {
   return (
     <div className="group relative rounded-2xl transition-all duration-300">
-      {/* Glow effect border */}
-      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#00D4AA] to-[#0066FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
-      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#00D4AA] to-[#0066FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      {/* Glow effect border - shows on hover OR when open */}
+      <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#00D4AA] to-[#0066FF] transition-opacity duration-300 blur-[2px] ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+      <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#00D4AA] to-[#0066FF] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
 
       {/* Card content */}
-      <div className="relative bg-[#0A0F1C] group-hover:bg-[#141B2D] rounded-2xl overflow-hidden transition-all duration-300">
-        <div className="p-6 flex items-center justify-between cursor-pointer">
+      <div className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#141B2D]' : 'bg-[#0A0F1C] group-hover:bg-[#141B2D]'}`}>
+        <button
+          onClick={onToggle}
+          className="w-full p-6 flex items-center justify-between cursor-pointer text-left"
+        >
           <div className="flex items-center gap-4">
             <span className="text-2xl font-bold text-[#00D4AA]">{step.number}</span>
             <span className="text-lg font-semibold text-white">{step.title}</span>
           </div>
-          <ChevronDown className="w-5 h-5 text-[#00D4AA] transition-transform duration-300 group-hover:rotate-180" />
-        </div>
-        <div className="overflow-hidden transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100">
+          <ChevronDown className={`w-5 h-5 text-[#00D4AA] transition-transform duration-300 ${isOpen ? 'rotate-180' : 'group-hover:rotate-180'}`} />
+        </button>
+        <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100'}`}>
           <p className="px-6 pb-6 text-gray-400 leading-relaxed">
             {step.description}
           </p>
@@ -151,6 +155,8 @@ function StepAccordion({ step }: { step: typeof steps[0] }) {
 }
 
 export default function Home() {
+  const [openStep, setOpenStep] = useState<number | null>(null)
+
   return (
     <main className="min-h-screen bg-[#0A0F1C]">
       {/* Navigation */}
@@ -227,6 +233,8 @@ export default function Home() {
               <StepAccordion
                 key={i}
                 step={step}
+                isOpen={openStep === i}
+                onToggle={() => setOpenStep(openStep === i ? null : i)}
               />
             ))}
           </div>
