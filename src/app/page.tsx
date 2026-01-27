@@ -285,6 +285,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-white via-[#A855F7] to-[#2563EB] bg-clip-text text-transparent mb-4">
+            Ready for Financial Freedom?
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Personal credit, business credit, or both. Start with a free consultation.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(37,99,235,0.3)]">
+              Book Free Consultation
+              <ArrowRight className="w-5 h-5" />
+            </a>
+          </div>
+          <p className="text-gray-500 mt-4 text-sm">
+            Or email <a href="mailto:contact@leverabase.com" className="text-[#A855F7] hover:underline">contact@leverabase.com</a>
+          </p>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-16 bg-[#141B2D]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -471,27 +492,6 @@ export default function Home() {
               Explore <ArrowRight className="w-4 h-4" />
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-[#141B2D]/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-white via-[#A855F7] to-[#2563EB] bg-clip-text text-transparent mb-4">
-            Ready for Financial Freedom?
-          </h2>
-          <p className="text-gray-400 mb-8">
-            Personal credit, business credit, or both — start with a free consultation.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
-              Book Free Consultation
-              <ArrowRight className="w-5 h-5" />
-            </a>
-          </div>
-          <p className="text-gray-500 mt-4 text-sm">
-            Or email <a href="mailto:contact@leverabase.com" className="text-[#A855F7] hover:underline">contact@leverabase.com</a>
-          </p>
         </div>
       </section>
 
