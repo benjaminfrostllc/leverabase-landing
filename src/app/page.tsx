@@ -244,7 +244,7 @@ export default function Home() {
             </h1>
 
             <p className="text-base sm:text-lg text-gray-400 mb-4 max-w-2xl mx-auto">
-              Whether you&apos;re an individual ready to take control of your financial future or an entrepreneur building business credit — we&apos;ve got you covered.
+              Whether you&apos;re an individual ready to take control of your financial future or an entrepreneur building business credit, we&apos;ve got you covered.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
