@@ -87,11 +87,11 @@ const chexSystemsPlan = {
 // Testimonials
 const testimonials = [
   {
-    quote: "After my divorce, I was left with 7 collections and 2 charge offs that tanked my score to 512. I thought I'd be stuck renting forever. Four months with Leverabase and I'm at 691. Just got approved for a $15K credit card and I'm pre approved for a mortgage. For the first time in years, I see a future.",
+    quote: "After my divorce, I was left with 7 collections and 2 charge offs that tanked my score to 512. I thought I'd be stuck renting forever. Four months with Leverabase and I'm at 724. Just got approved for a $15K credit card and I'm pre approved for a mortgage. For the first time in years, I see a future.",
     name: 'Marcus T.',
     location: 'Atlanta, GA',
-    result: '512 to 691',
-    highlight: '+179 points'
+    result: '512 to 724',
+    highlight: '+212 points'
   },
   {
     quote: "I've been burned by 3 different credit repair companies. They all sent the same generic templates and nothing happened. Leverabase was different. I could literally watch disputes being filed through my portal. They removed 11 negative items including a $12K medical collection I thought would haunt me for 7 years. Paid for itself 100x over.",
