@@ -143,8 +143,8 @@ function StepAccordion({ step, isOpen, onToggle }: { step: typeof steps[0], isOp
   return (
     <div className="group relative rounded-2xl transition-all duration-300">
       {/* Glow effect border - shows on hover OR when open */}
-      <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#A855F7] to-[#3B82F6] transition-opacity duration-300 blur-[2px] ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
-      <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#A855F7] to-[#3B82F6] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+      <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] transition-opacity duration-300 blur-[2px] ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+      <div className={`absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
 
       {/* Card content */}
       <div className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#141B2D]' : 'bg-[#0A0F1C] group-hover:bg-[#141B2D]'}`}>
@@ -153,7 +153,7 @@ function StepAccordion({ step, isOpen, onToggle }: { step: typeof steps[0], isOp
           className="w-full p-6 flex items-center justify-between cursor-pointer text-left"
         >
           <div className="flex items-center gap-4">
-            <span className="text-2xl font-bold bg-gradient-to-r from-[#A855F7] to-[#3B82F6] bg-clip-text text-transparent">{step.number}</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-[#A855F7] to-[#2563EB] bg-clip-text text-transparent">{step.number}</span>
             <span className="text-lg font-semibold text-white">{step.title}</span>
           </div>
           <ChevronDown className={`w-5 h-5 text-[#A855F7] transition-transform duration-300 ${isOpen ? 'rotate-180' : 'group-hover:rotate-180'}`} />
@@ -178,7 +178,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#A855F7] to-[#3B82F6] rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-[#A855F7] to-[#2563EB] rounded-lg flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Leverabase</span>
@@ -189,7 +189,7 @@ export default function Home() {
               <a href="#testimonials" className="text-gray-400 hover:text-white transition">Results</a>
               <a href="#guarantees" className="text-gray-400 hover:text-white transition">Guarantees</a>
             </div>
-            <a href="https://leverabase.app" className="bg-gradient-to-r from-[#A855F7] to-[#3B82F6] text-white px-5 py-2.5 rounded-lg font-medium hover:opacity-90 transition">
+            <a href="https://leverabase.app" className="bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white px-5 py-2.5 rounded-lg font-medium hover:opacity-90 transition">
               Get Started
             </a>
           </div>
@@ -204,7 +204,7 @@ export default function Home() {
           style={{
             backgroundImage: `
               repeating-linear-gradient(0deg, transparent, transparent 59px, #A855F7 59px, #A855F7 60px),
-              repeating-linear-gradient(90deg, transparent, transparent 59px, #3B82F6 59px, #3B82F6 60px)
+              repeating-linear-gradient(90deg, transparent, transparent 59px, #2563EB 59px, #2563EB 60px)
             `,
             backgroundSize: '60px 60px',
             maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)',
@@ -217,7 +217,7 @@ export default function Home() {
           style={{
             backgroundImage: `
               repeating-linear-gradient(0deg, transparent, transparent 58px, #A855F7 58px, #A855F7 62px),
-              repeating-linear-gradient(90deg, transparent, transparent 58px, #3B82F6 58px, #3B82F6 62px)
+              repeating-linear-gradient(90deg, transparent, transparent 58px, #2563EB 58px, #2563EB 62px)
             `,
             backgroundSize: '60px 60px',
             maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)',
@@ -226,7 +226,7 @@ export default function Home() {
         />
 
         {/* Background glow effects */}
-        <div className="absolute top-10 left-1/4 w-72 h-72 bg-[#3B82F6]/20 rounded-full blur-3xl z-0" />
+        <div className="absolute top-10 left-1/4 w-72 h-72 bg-[#2563EB]/20 rounded-full blur-3xl z-0" />
         <div className="absolute top-20 right-1/4 w-72 h-72 bg-[#A855F7]/20 rounded-full blur-3xl z-0" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -239,7 +239,7 @@ export default function Home() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3">
               Clean Credit.
               <br />
-              <span className="bg-gradient-to-r from-[#A855F7] to-[#3B82F6] bg-clip-text text-transparent">Unlock Your Future.</span>
+              <span className="bg-gradient-to-r from-[#A855F7] to-[#2563EB] bg-clip-text text-transparent">Unlock Your Future.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-gray-400 mb-4 max-w-2xl mx-auto">
@@ -247,7 +247,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="#pricing" className="w-full sm:w-auto bg-gradient-to-r from-[#A855F7] to-[#3B82F6] text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
+              <a href="#pricing" className="w-full sm:w-auto bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
                 View Packages
                 <ArrowRight className="w-4 h-4" />
               </a>
@@ -264,7 +264,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6">
             <p className="text-[#A855F7] font-medium mb-1 text-sm">YOUR JOURNEY</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white via-[#A855F7] to-[#2563EB] bg-clip-text text-transparent">
               The Path to Clean Credit
             </h2>
           </div>
@@ -287,7 +287,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <p className="text-[#A855F7] font-medium mb-2">SIMPLE PRICING</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-white via-[#A855F7] to-[#2563EB] bg-clip-text text-transparent mb-4">
               Choose Your Path
             </h2>
             <p className="text-gray-400">
@@ -326,7 +326,7 @@ export default function Home() {
                   href="https://leverabase.app"
                   className={`block w-full text-center py-3 rounded-xl font-semibold transition ${
                     plan.popular
-                      ? 'bg-gradient-to-r from-[#A855F7] to-[#3B82F6] text-white hover:opacity-90'
+                      ? 'bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white hover:opacity-90'
                       : 'bg-white/10 text-white hover:bg-white/20'
                   }`}
                 >
@@ -347,7 +347,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <p className="text-[#A855F7] font-medium mb-2">REAL RESULTS</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-white via-[#A855F7] to-[#2563EB] bg-clip-text text-transparent">
               What Our Clients Say
             </h2>
           </div>
@@ -364,7 +364,7 @@ export default function Home() {
                       <Star key={j} className="w-4 h-4 fill-[#A855F7] text-[#A855F7]" />
                     ))}
                   </div>
-                  <div className="bg-gradient-to-r from-[#A855F7] to-[#3B82F6] text-white text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white text-xs font-bold px-3 py-1 rounded-full">
                     {testimonial.highlight}
                   </div>
                 </div>
@@ -391,7 +391,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <p className="text-[#A855F7] font-medium mb-2">OUR COMMITMENT</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-white via-[#A855F7] to-[#2563EB] bg-clip-text text-transparent">
               Guarantees & Features
             </h2>
           </div>
@@ -404,7 +404,7 @@ export default function Home() {
                   key={i}
                   className="bg-[#0A0F1C] border border-white/5 rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#A855F7]/20 to-[#3B82F6]/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#A855F7]/20 to-[#2563EB]/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-6 h-6 text-[#A855F7]" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
@@ -440,14 +440,14 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-16 bg-[#141B2D]/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-white via-[#A855F7] to-[#2563EB] bg-clip-text text-transparent mb-4">
             Ready for Financial Freedom?
           </h2>
           <p className="text-gray-400 mb-8">
             Personal credit, business credit, or both — start with a free consultation.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#A855F7] to-[#3B82F6] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
+            <a href="https://leverabase.app" className="w-full sm:w-auto bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition flex items-center justify-center gap-2 shadow-[0_0_60px_rgba(0,102,255,0.3)]">
               Book Free Consultation
               <ArrowRight className="w-5 h-5" />
             </a>
@@ -463,7 +463,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#A855F7] to-[#3B82F6] rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-[#A855F7] to-[#2563EB] rounded-lg flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Leverabase</span>
