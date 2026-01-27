@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #818CF8;
+  --color-primary: #3B82F6;
   --color-secondary: #A855F7;
   --color-dark: #0A0F1C;
   --color-dark-secondary: #141B2D;
@@ -26,7 +26,7 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #A855F7 0%, #818CF8 100%);
+  background: linear-gradient(135deg, #A855F7 0%, #3B82F6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
