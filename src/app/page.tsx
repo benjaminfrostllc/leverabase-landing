@@ -27,7 +27,7 @@ const steps = [
   }
 ]
 
-// Pricing plans
+// Pricing plans (main 3)
 const plans = [
   {
     name: 'Starter',
@@ -36,19 +36,6 @@ const plans = [
     period: 'One-time payment',
     features: [
       'Single bureau cleaning',
-      'Real-time portal access',
-      'Email & chat support'
-    ],
-    popular: false
-  },
-  {
-    name: 'ChexSystems & Early Warning',
-    description: 'Banking report cleaning',
-    price: '$500',
-    period: 'One-time payment',
-    features: [
-      'ChexSystems cleaning',
-      'Early Warning cleaning',
       'Real-time portal access',
       'Email & chat support'
     ],
@@ -82,6 +69,20 @@ const plans = [
     popular: false
   }
 ]
+
+// ChexSystems add-on
+const chexSystemsPlan = {
+  name: 'ChexSystems & Early Warning',
+  description: 'Banking report cleaning',
+  price: '$500',
+  period: 'One-time payment',
+  features: [
+    'ChexSystems cleaning',
+    'Early Warning cleaning',
+    'Real-time portal access',
+    'Email & chat support'
+  ]
+}
 
 // Testimonials
 const testimonials = [
@@ -295,13 +296,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {/* Main 3 pricing cards */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {plans.map((plan, i) => (
               <div
                 key={i}
                 className={`rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${
                   plan.popular
-                    ? 'bg-gradient-to-b from-[#141B2D] to-[#0A0F1C] border border-[#A855F7]/30 shadow-[0_0_60px_rgba(0,212,170,0.15)]'
+                    ? 'bg-gradient-to-b from-[#141B2D] to-[#0A0F1C] border border-[#A855F7]/30 shadow-[0_0_60px_rgba(168,85,247,0.15)]'
                     : 'bg-[#141B2D] border border-white/5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]'
                 }`}
               >
@@ -334,6 +336,39 @@ export default function Home() {
                 </a>
               </div>
             ))}
+          </div>
+
+          {/* ChexSystems add-on card - full width below */}
+          <div className="mt-6 max-w-5xl mx-auto">
+            <div className="rounded-2xl p-8 bg-gradient-to-r from-[#141B2D] to-[#0A0F1C] border border-[#2563EB]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="flex-1">
+                  <div className="text-[#2563EB] text-sm font-semibold mb-2">ADD-ON SERVICE</div>
+                  <h3 className="text-2xl font-bold text-white mb-1">{chexSystemsPlan.name}</h3>
+                  <p className="text-gray-400 mb-4">{chexSystemsPlan.description}</p>
+                  <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                    {chexSystemsPlan.features.map((feature, j) => (
+                      <li key={j} className="flex items-center gap-2">
+                        <Check className="w-5 h-5 text-[#A855F7] flex-shrink-0" />
+                        <span className="text-white">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex flex-col items-center md:items-end gap-3">
+                  <div>
+                    <span className="text-4xl font-bold text-white">{chexSystemsPlan.price}</span>
+                    <span className="text-gray-500 text-sm ml-2">{chexSystemsPlan.period}</span>
+                  </div>
+                  <a
+                    href="https://leverabase.app"
+                    className="bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90 transition"
+                  >
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
           <p className="text-center text-gray-500 mt-8">
