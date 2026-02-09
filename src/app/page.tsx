@@ -409,19 +409,16 @@ export default function Home() {
       {/* CTA after Path to Clean Credit */}
       <section className="pb-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#A855F7]/10 to-[#2563EB]/10" />
-            <div className="relative text-center py-5 px-8">
-              <a
-                href="https://api.leadconnectorhq.com/widget/booking/LIGb8Yj9D4QK54fLb4qO"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition cta-pulse"
-              >
-                Get Your Free Custom Plan
-                <ArrowRight className="w-5 h-5" />
-              </a>
-            </div>
+          <div className="text-center py-5 px-8">
+            <a
+              href="https://api.leadconnectorhq.com/widget/booking/LIGb8Yj9D4QK54fLb4qO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border-2 border-[#A855F7] text-[#A855F7] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#A855F7]/10 transition"
+            >
+              Get Your Free Custom Plan
+              <ArrowRight className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </section>
