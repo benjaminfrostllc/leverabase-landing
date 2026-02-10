@@ -833,6 +833,32 @@ export default function Home() {
                       </div>
                     </div>
 
+                    {/* Bonus Section - Tradeline Program */}
+                    <div className="mt-6 bg-gradient-to-r from-[#A855F7]/10 to-[#2563EB]/10 border border-[#A855F7]/30 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Sparkles className="w-4 h-4 text-[#A855F7]" />
+                        <p className="text-[#A855F7] font-bold text-sm">BONUS: Exclusive Tradeline Program Access</p>
+                      </div>
+                      <ul className="space-y-2">
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0 mt-0.5" />
+                          <span className="text-white text-xs">Discounted tradelines at exclusive member rates</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0 mt-0.5" />
+                          <span className="text-white text-xs">Guaranteed aged accounts with low utilization & high credit limits</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0 mt-0.5" />
+                          <span className="text-white text-xs">Premium pricing for ongoing tradeline needs</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-3.5 h-3.5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                          <span className="text-yellow-400 font-medium text-xs">FREE eBook: 72-Hour Inquiry Removal Guide</span>
+                        </li>
+                      </ul>
+                    </div>
+
                     <div className="mt-4 inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5">
                       <Clock className="w-3.5 h-3.5 text-[#A855F7]" />
                       <span className="text-gray-300 text-sm">4-month program</span>
