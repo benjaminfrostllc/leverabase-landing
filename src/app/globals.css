@@ -39,7 +39,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 2.5s linear infinite;
 }
 
 .shimmer-text-price {
@@ -48,7 +48,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 2.5s linear infinite;
 }
 
 @keyframes shimmer {
