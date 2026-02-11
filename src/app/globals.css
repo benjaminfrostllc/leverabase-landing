@@ -34,7 +34,7 @@ body {
 
 /* Shimmer text animation */
 .shimmer-text {
-  background: linear-gradient(90deg, #ffffff 0%, #A855F7 25%, #2563EB 50%, #A855F7 75%, #ffffff 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #A855F7 10%, #2563EB 50%, #A855F7 90%, #ffffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -43,7 +43,7 @@ body {
 }
 
 .shimmer-text-price {
-  background: linear-gradient(90deg, #ffffff 0%, #A855F7 25%, #2563EB 50%, #A855F7 75%, #ffffff 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #A855F7 10%, #2563EB 50%, #A855F7 90%, #ffffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
