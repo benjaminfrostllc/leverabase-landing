@@ -638,95 +638,99 @@ export default function Home() {
             </p>
           </FadeInUp>
 
-          {/* Featured Business Builder Card */}
-          <div className="max-w-5xl mx-auto mb-8">
-            <div className="group relative rounded-3xl transition-all duration-300">
-              {/* Persistent glow border */}
-              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] blur-[3px]" />
-              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-r from-[#A855F7] to-[#2563EB]" />
-
-              <div className="relative rounded-3xl p-8 md:p-10 bg-[#0A0F1C]">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3 flex-wrap">
-                      <div className="inline-flex items-center gap-2 bg-[#A855F7]/10 text-[#A855F7] rounded-full px-3 py-1 text-xs font-semibold">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        MOST POPULAR
-                      </div>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">Business Builder</h3>
-                    <p className="text-gray-400 text-sm mb-3">{cleanCredit ? 'Funding package for clean credit profiles' : 'Credit + funding package'}</p>
-
-                    {/* Clean Credit Toggle */}
-                    <button
-                      onClick={() => setCleanCredit(!cleanCredit)}
-                      className="flex items-center gap-2.5 mb-4 group/toggle cursor-pointer"
-                    >
-                      <div className={`relative w-11 h-6 rounded-full transition-all duration-300 ${cleanCredit ? 'bg-[#A855F7]' : 'bg-white/10'}`}>
-                        <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-all duration-300 ${cleanCredit ? 'left-[22px]' : 'left-0.5'}`} />
-                      </div>
-                      <span className="text-sm text-gray-400 group-hover/toggle:text-gray-300 transition">I already have clean credit</span>
-                    </button>
-
-                    <div className="mb-5">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-4xl font-bold shimmer-text-price price-transition">{cleanCredit ? '$5,000' : '$8,200'}</span>
-                        {cleanCredit && <span className="text-gray-500 line-through text-lg">$8,200</span>}
-                      </div>
-                      <p className="text-[#A855F7] text-xs mt-1">0% interest for 8 months — <a href="https://api.leadconnectorhq.com/widget/booking/LIGb8Yj9D4QK54fLb4qO" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition">book a call</a> to unlock</p>
-                      {cleanCredit && <p className="text-green-400 text-xs mt-1 font-medium">Save $3,200 — credit cleaning not needed</p>}
-                    </div>
-                    <ul className="space-y-2">
-                      {!cleanCredit && (
-                        <>
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-[#A855F7] flex-shrink-0 mt-0.5" />
-                            <span className="text-white text-sm">Everything in Complete</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <Check className="w-4 h-4 text-[#A855F7] flex-shrink-0 mt-0.5" />
-                            <span className="text-white text-sm">ChexSystems & Early Warning cleaning</span>
-                          </li>
-                        </>
-                      )}
-                      {[
-                        'Tradelines + credit history (included & set up for you)',
-                        'LLC & EIN setup help',
-                        'Business structuring & online presence setup',
-                      ].map((feature, j) => (
-                        <li key={j} className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#A855F7] flex-shrink-0 mt-0.5" />
-                          <span className="text-white text-sm">{feature}</span>
-                        </li>
-                      ))}
-                      <li className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-yellow-400 font-medium text-sm">$50K+ funding guarantee</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="flex flex-col gap-3 md:min-w-[200px] md:pt-10">
-                    <a
-                      href={cleanCredit ? 'https://api.leadconnectorhq.com/widget/booking/LIGb8Yj9D4QK54fLb4qO' : 'https://book.stripe.com/5kQ7sD0Z3gCn7Q96lWfQI05'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full text-center py-3 rounded-xl font-semibold transition bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white hover:opacity-90 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
-                    >
-                      {cleanCredit ? 'Book a Call' : 'Get Started'}
-                    </a>
-                    <a
-                      href="#business-builder-solution"
-                      className="block w-full text-center py-3 rounded-xl font-semibold transition bg-white/10 text-white hover:bg-white/20"
-                    >
-                      Learn More
-                    </a>
-                  </div>
-                </div>
+          {/* Payment Plan Explainer */}
+          <FadeInUp>
+          <div className="max-w-3xl mx-auto mb-12">
+            <div className="bg-[#141B2D] border border-[#A855F7]/20 rounded-2xl p-6 sm:p-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-[#A855F7]/10 text-[#A855F7] rounded-full px-3 py-1 text-xs font-semibold mb-4">
+                <CreditCard className="w-3.5 h-3.5" />
+                FLEXIBLE PAYMENT PLANS
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Every Plan Is Affordable — Pay Over Time at 0% Interest</h3>
+              <p className="text-gray-400 text-sm sm:text-base mb-5">
+                We believe credit shouldn&apos;t cost you more credit. That&apos;s why every LeveraBase package comes with a 6–8 month payment plan option at 0% interest. No hidden fees. No financing traps. Just a simple, split payment structure so you can get started today without the upfront pressure.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
+                <span className="flex items-center gap-2 text-gray-300"><Check className="w-4 h-4 text-[#A855F7] flex-shrink-0" /> 0% interest for 6–8 months</span>
+                <span className="flex items-center gap-2 text-gray-300"><Check className="w-4 h-4 text-[#A855F7] flex-shrink-0" /> No credit check to enroll</span>
+                <span className="flex items-center gap-2 text-gray-300"><Check className="w-4 h-4 text-[#A855F7] flex-shrink-0" /> BNPL: Affirm, Klarna, Afterpay & more</span>
               </div>
             </div>
           </div>
+          </FadeInUp>
 
-          {/* 3 Standard pricing cards */}
+          {/* Quick add-on cards - $300 & $500 */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
+            {/* Inquiry Three Bureau Sweep card - $300 */}
+            <FadeInUp delay={0}>
+            <div className="group relative rounded-xl transition-all duration-300 hover:-translate-y-1 h-full">
+              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
+              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative rounded-xl p-4 bg-[#141B2D] group-hover:bg-[#1a2236] transition-all duration-300 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-base md:text-lg font-semibold text-white">Inquiry Three Bureau Sweep</h3>
+                  <span className="text-xl font-bold shimmer-text-price">$300</span>
+                </div>
+                <p className="text-gray-500 text-xs mb-3">One-time payment</p>
+                <ul className="space-y-1.5 mb-4 flex-1">
+                  <li className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
+                    <span className="text-gray-300 text-xs">Inquiry removal across all 3 bureaus</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
+                    <span className="text-gray-300 text-xs">Hard & soft inquiry targeting</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
+                    <span className="text-gray-300 text-xs">Real-time portal access</span>
+                  </li>
+                </ul>
+                <a
+                  href="https://book.stripe.com/dRm9ALazD0Dp5I16lWfQI06"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center py-2 rounded-lg text-sm font-medium transition bg-white/10 text-white hover:bg-white/20"
+                >
+                  Get Started
+                </a>
+              </div>
+            </div>
+            </FadeInUp>
+
+            {/* ChexSystems add-on card - $500 */}
+            <FadeInUp delay={0.15}>
+            <div className="group relative rounded-xl transition-all duration-300 hover:-translate-y-1 h-full">
+              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
+              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative rounded-xl p-4 bg-[#141B2D] group-hover:bg-[#1a2236] transition-all duration-300 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-base md:text-lg font-semibold text-white">{chexSystemsPlan.name}</h3>
+                  <span className="text-xl font-bold shimmer-text-price">{chexSystemsPlan.price}</span>
+                </div>
+                <p className="text-gray-500 text-xs mb-3">{chexSystemsPlan.period}</p>
+                <ul className="space-y-1.5 mb-4 flex-1">
+                  {chexSystemsPlan.features.map((feature, j) => (
+                    <li key={j} className="flex items-center gap-2">
+                      <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
+                      <span className="text-gray-300 text-xs">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="https://book.stripe.com/fZubIT5fjfyjfiB9y8fQI03"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center py-2 rounded-lg text-sm font-medium transition bg-white/10 text-white hover:bg-white/20"
+                >
+                  Get Started
+                </a>
+              </div>
+            </div>
+            </FadeInUp>
+          </div>
+
+          {/* 3 Standard pricing cards - $500 / $1,500 / $2,500 */}
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {plans.map((plan, i) => (
               <FadeInUp key={i} delay={i * 0.15}>
@@ -764,7 +768,7 @@ export default function Home() {
             ))}
           </div>
 
-          {/* 700+ Credit Club - No Credit History */}
+          {/* 700+ Credit Club - $2,000 */}
           <div className="max-w-5xl mx-auto mt-8">
             <FadeInUp>
             <div className="group relative rounded-3xl transition-all duration-300">
@@ -888,69 +892,90 @@ export default function Home() {
             </FadeInUp>
           </div>
 
-          {/* Secondary cards - ChexSystems & Free Consultation */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-6">
-            {/* ChexSystems add-on card */}
-            <div className="group relative rounded-xl transition-all duration-300 hover:-translate-y-1 h-full">
-              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
-              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative rounded-xl p-4 bg-[#141B2D] group-hover:bg-[#1a2236] transition-all duration-300 flex flex-col h-full">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-base md:text-lg font-semibold text-white">{chexSystemsPlan.name}</h3>
-                  <span className="text-xl font-bold shimmer-text-price">{chexSystemsPlan.price}</span>
-                </div>
-                <p className="text-gray-500 text-xs mb-3">{chexSystemsPlan.period}</p>
-                <ul className="space-y-1.5 mb-4 flex-1">
-                  {chexSystemsPlan.features.map((feature, j) => (
-                    <li key={j} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
-                      <span className="text-gray-300 text-xs">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="https://book.stripe.com/fZubIT5fjfyjfiB9y8fQI03"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center py-2 rounded-lg text-sm font-medium transition bg-white/10 text-white hover:bg-white/20"
-                >
-                  Get Started
-                </a>
-              </div>
-            </div>
+          {/* Featured Business Builder Card - $8,200 */}
+          <div className="max-w-5xl mx-auto mt-8">
+            <div className="group relative rounded-3xl transition-all duration-300">
+              {/* Persistent glow border */}
+              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] blur-[3px]" />
+              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-r from-[#A855F7] to-[#2563EB]" />
 
-            {/* Inquiry Three Bureau Sweep card */}
-            <div className="group relative rounded-xl transition-all duration-300 hover:-translate-y-1 h-full">
-              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
-              <div className="absolute -inset-[1px] rounded-xl bg-gradient-to-r from-[#A855F7] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative rounded-xl p-4 bg-[#141B2D] group-hover:bg-[#1a2236] transition-all duration-300 flex flex-col h-full">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-base md:text-lg font-semibold text-white">Inquiry Three Bureau Sweep</h3>
-                  <span className="text-xl font-bold shimmer-text-price">$300</span>
+              <div className="relative rounded-3xl p-8 md:p-10 bg-[#0A0F1C]">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3 flex-wrap">
+                      <div className="inline-flex items-center gap-2 bg-[#A855F7]/10 text-[#A855F7] rounded-full px-3 py-1 text-xs font-semibold">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        MOST POPULAR
+                      </div>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">Business Builder</h3>
+                    <p className="text-gray-400 text-sm mb-3">{cleanCredit ? 'Funding package for clean credit profiles' : 'Credit + funding package'}</p>
+
+                    {/* Clean Credit Toggle */}
+                    <button
+                      onClick={() => setCleanCredit(!cleanCredit)}
+                      className="flex items-center gap-2.5 mb-4 group/toggle cursor-pointer"
+                    >
+                      <div className={`relative w-11 h-6 rounded-full transition-all duration-300 ${cleanCredit ? 'bg-[#A855F7]' : 'bg-white/10'}`}>
+                        <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-all duration-300 ${cleanCredit ? 'left-[22px]' : 'left-0.5'}`} />
+                      </div>
+                      <span className="text-sm text-gray-400 group-hover/toggle:text-gray-300 transition">I already have clean credit</span>
+                    </button>
+
+                    <div className="mb-5">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl font-bold shimmer-text-price price-transition">{cleanCredit ? '$5,000' : '$8,200'}</span>
+                        {cleanCredit && <span className="text-gray-500 line-through text-lg">$8,200</span>}
+                      </div>
+                      <p className="text-[#A855F7] text-xs mt-1">0% interest for 8 months — <a href="https://api.leadconnectorhq.com/widget/booking/LIGb8Yj9D4QK54fLb4qO" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition">book a call</a> to unlock</p>
+                      {cleanCredit && <p className="text-green-400 text-xs mt-1 font-medium">Save $3,200 — credit cleaning not needed</p>}
+                    </div>
+                    <ul className="space-y-2">
+                      {!cleanCredit && (
+                        <>
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-[#A855F7] flex-shrink-0 mt-0.5" />
+                            <span className="text-white text-sm">Everything in Complete</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-[#A855F7] flex-shrink-0 mt-0.5" />
+                            <span className="text-white text-sm">ChexSystems & Early Warning cleaning</span>
+                          </li>
+                        </>
+                      )}
+                      {[
+                        'Tradelines + credit history (included & set up for you)',
+                        'LLC & EIN setup help',
+                        'Business structuring & online presence setup',
+                      ].map((feature, j) => (
+                        <li key={j} className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-[#A855F7] flex-shrink-0 mt-0.5" />
+                          <span className="text-white text-sm">{feature}</span>
+                        </li>
+                      ))}
+                      <li className="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-yellow-400 font-medium text-sm">$50K+ funding guarantee</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="flex flex-col gap-3 md:min-w-[200px] md:pt-10">
+                    <a
+                      href={cleanCredit ? 'https://api.leadconnectorhq.com/widget/booking/LIGb8Yj9D4QK54fLb4qO' : 'https://book.stripe.com/5kQ7sD0Z3gCn7Q96lWfQI05'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full text-center py-3 rounded-xl font-semibold transition bg-gradient-to-r from-[#A855F7] to-[#2563EB] text-white hover:opacity-90 shadow-[0_0_40px_rgba(168,85,247,0.3)]"
+                    >
+                      {cleanCredit ? 'Book a Call' : 'Get Started'}
+                    </a>
+                    <a
+                      href="#business-builder-solution"
+                      className="block w-full text-center py-3 rounded-xl font-semibold transition bg-white/10 text-white hover:bg-white/20"
+                    >
+                      Learn More
+                    </a>
+                  </div>
                 </div>
-                <p className="text-gray-500 text-xs mb-3">One-time payment</p>
-                <ul className="space-y-1.5 mb-4 flex-1">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
-                    <span className="text-gray-300 text-xs">Inquiry removal across all 3 bureaus</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
-                    <span className="text-gray-300 text-xs">Hard & soft inquiry targeting</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#A855F7] flex-shrink-0" />
-                    <span className="text-gray-300 text-xs">Real-time portal access</span>
-                  </li>
-                </ul>
-                <a
-                  href="https://book.stripe.com/dRm9ALazD0Dp5I16lWfQI06"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center py-2 rounded-lg text-sm font-medium transition bg-white/10 text-white hover:bg-white/20"
-                >
-                  Get Started
-                </a>
               </div>
             </div>
           </div>
